@@ -89,8 +89,13 @@ if has('vim_starting')
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
+
+" NeoBundle 自体を NeoBundle で管理
+NeoBundleFetch 'Shougo/neobundle.vim'
+
 " カラースキーマの設定--------------------------------------------------
 NeoBundle 'MaxMEllon/molokai'
+
 call neobundle#end()
 
 filetype plugin indent on     " required!
