@@ -86,6 +86,7 @@ if has('vim_starting')
     set nocompatible               " Be iMproved
     if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
       echo "install NeoBundle"
+      :call system("mkdir ~/.vim/bundle")
       :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vimT")
     endif
   endif
