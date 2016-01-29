@@ -84,6 +84,10 @@ filetype off
 if has('vim_starting')
   if &compatible
     set nocompatible               " Be iMproved
+    if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
+      echo "install NeoBundle"
+      :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vimT")
+    endif
   endif
   set runtimepath+=~/.vim/bundle/neobundle.vim
 endif
@@ -92,6 +96,17 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
 " NeoBundle 自体を NeoBundle で管理
 NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'tpope/vim-surround'
+
+NeoBundle 'mattn/emmet-vim'
+
+" NeoBundle 'Yggdroot/indentLine'
+" let g:indentLine_faster = 1
+" nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+" let g:indentLine_color_term = 111
+" let g:indentLine_color_gui = '#708090'
+" let g:indentLine_char = '¦'
 
 " カラースキーマの設定--------------------------------------------------
 NeoBundle 'MaxMEllon/molokai'
