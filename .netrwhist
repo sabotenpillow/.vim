@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/usr/member/2013/tonetch/taskApp/app/views/layouts'
 let g:netrw_dirhist_2='/home/usr/member/2013/tonetch/taskApp/app/assets/stylesheets'
 let g:netrw_dirhist_3='/home/usr/member/2013/tonetch/.vim'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/home/usr/member/2013/tonetch/dotfiles/.git'
 let g:netrw_dirhist_6='/home/usr/member/2013/tonetch/taskApp/app'
 let g:netrw_dirhist_7='/home/usr/member/2013/tonetch/meugene/config'
 let g:netrw_dirhist_8='/home/usr/member/2013/tonetch/meugene/app/models'
+let g:netrw_dirhist_9='/home/usr/member/2013/tonetch/InfoExpr2/Poker/src'
