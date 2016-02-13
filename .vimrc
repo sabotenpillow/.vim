@@ -91,13 +91,14 @@ if has('vim_starting')
     if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
       echo "install NeoBundle"
       :call system("mkdir ~/.vim/bundle")
-      :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vimT")
+      :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
     endif
   endif
   set runtimepath+=~/.vim/bundle/neobundle.vim
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
+let g:neobundle_default_git_protocol='https'
 
 " NeoBundle 自体を NeoBundle で管理
 NeoBundleFetch 'Shougo/neobundle.vim'
