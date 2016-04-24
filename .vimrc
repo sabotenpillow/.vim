@@ -107,12 +107,12 @@ NeoBundle 'tpope/vim-surround'
 
 NeoBundle 'mattn/emmet-vim'
 
-" NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'Yggdroot/indentLine'
 " let g:indentLine_faster = 1
 " nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
 " let g:indentLine_color_term = 111
 " let g:indentLine_color_gui = '#708090'
-" let g:indentLine_char = '¦'
+let g:indentLine_char = '¦'
 
 " カラースキーマの設定--------------------------------------------------
 NeoBundle 'MaxMEllon/molokai'
