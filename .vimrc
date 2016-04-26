@@ -52,7 +52,8 @@ set cursorline
 "noremap <silent> > }
 
 "***** normal mode ***************************************************
-nnoremap ; ^
+" nnoremap ; ^
+nnoremap ; :
 
 "***** insert mode ***************************************************
 " insert
