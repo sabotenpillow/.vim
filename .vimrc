@@ -21,6 +21,13 @@ set matchpairs& matchpairs+=<:>
 set showmatch
 " 不明
 set matchtime=3
+" no Beep
+set visualbell
+set vb t_vb
+" if has('mouse')
+"   set mouse=a
+" endif
+
 " 不明
 set infercase
 " not distinguish upper and lower
