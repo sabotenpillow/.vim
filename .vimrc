@@ -9,7 +9,7 @@ set noswapfile
 " line number display
 set number
 " display by relative number
-" set relativenumber
+set relativenumber
 " 不可視文字
 set list
 set listchars=eol:$,tab:>-,trail:_,extends:<
