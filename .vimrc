@@ -1,52 +1,32 @@
-"***********************************************************************
-" plugin
-"***********************************************************************
-
-" プラグインのインストールされるディレクトリ
-let s:dein_dir = expand('~/.cache/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-
-if &runtimepath !~#'/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+if &compatible
+  set nocompatible               " Be iMproved
 endif
 
-if dein#load_state(s:dein_dir)
-  call dein#begin(expand('~/.cache/dein'))
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-  let s:toml = g:rc_dir . '/dein.toml'
-  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+call dein#begin(expand('~/.vim/dein'))
 
-  call dein#load_toml(s:toml, {'lazy': 0})
-  call dein#load_tomll(s:lazy_toml, {'lazy': 1})
-  
-  " call dein#add(~/.vim/dein/repos/github.com/Shougo/dein.vim)
-  " call dein#add('Shougo/neocomplete.vim')
-  
-  " NeoBundle 'tpope/vim-surround'
-  " 
-  " NeoBundle 'mattn/emmet-vim'
-  " 
-  " NeoBundle 'Yggdroot/indentLine'
-  " " let g:indentLine_faster = 1
-  " " nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-  " " let g:indentLine_color_term = 111
-  " " let g:indentLine_color_gui = '#708090'
-  " let g:indentLine_char = '¦'
-  
-  " NeoBundle 'MaxMEllon/molokai'
-  
-  " call dein#add('MaxMEllon/molokai')
-  " call dein#add('')
-  
-  " filetype plugin indent on     " required!
-  " filetype indent on
-  
-  call dein#end()
-  call dein#save_state()
-endif
+call dein#add('Shougo/dein.vim')
+" call dein#add('Shougo/neocomplete.vim')
+
+" NeoBundle 'tpope/vim-surround'
+" NeoBundle 'mattn/emmet-vim'
+" NeoBundle 'Yggdroot/indentLine'
+" " let g:indentLine_faster = 1
+" " nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+" " let g:indentLine_color_term = 111
+" " let g:indentLine_color_gui = '#708090'
+" let g:indentLine_char = '¦'
+
+call dein#add('MaxMEllon/molokai')
+" call dein#add('')
+
+call dein#add('Shougo/vimshell', { 'rev': '3787e5'})
+
+call dein#end()
+
+filetype plugin indent on     " required!
+
 
 if dein#check_install()
   call dein#install()
@@ -63,7 +43,7 @@ set noswapfile
 " line number display
 set number
 " display by relative number
-set relativenumber
+" set relativenumber
 " 不可視文字
 set list
 set listchars=eol:$,tab:>-,trail:_,extends:<
@@ -76,8 +56,8 @@ set showmatch
 " 不明
 set matchtime=3
 " no Beep
-set visualbell
-set vb t_vb
+" set visualbell
+" set vb t_vb
 " if has('mouse')
 "   set mouse=a
 " endif
@@ -138,17 +118,22 @@ inoremap ' ''<left>
 inoremap <> <><left>
 
 
+"***********************************************************************
+" plugin
+"***********************************************************************
+
 
 " カラースキーマの設定--------------------------------------------------
 
+filetype indent on
 syntax on
 
 " 色の設定(syntax onのあと) molokai
-" set t_Co=256
-" try
-"   colorscheme molokai
-"   let g:molokai_original = 1
-" catch
-"   colorscheme desert
-" endtry
+set t_Co=256
+try
+  colorscheme molokai
+  let g:molokai_original = 1
+catch
+  colorscheme desert
+endtry
 
