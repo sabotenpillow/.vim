@@ -14,12 +14,15 @@ call dein#add('Shougo/vimshell', { 'rev': '3787e5'})
 call dein#add('MaxMEllon/molokai')
 call dein#add('tpope/vim-surround')
 call dein#add('mattn/emmet-vim')
+
 call dein#add('Yggdroot/indentLine')
 let g:indentLine_faster = 1
 nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
 let g:indentLine_color_term = 111
 let g:indentLine_color_gui = '#708090'
 let g:indentLine_char = '¦'
+
+call dein#add('Townk/vim-autoclose')
 
 call dein#end()
 
@@ -125,13 +128,12 @@ inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <DEL>
 
 " 
-inoremap { {}<left>
-inoremap [ []<left>
-inoremap ( ()<left>
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap <> <><left>
-
+" inoremap { {}<left>
+" inoremap [ []<left>
+" inoremap ( ()<left>
+" inoremap " ""<left>
+" inoremap ' ''<left>
+" inoremap <> <><left>
 
 "***********************************************************************
 " plugin
