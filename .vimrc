@@ -9,19 +9,17 @@ call dein#begin(expand('~/.vim/dein'))
 call dein#add('Shougo/dein.vim')
 " call dein#add('Shougo/neocomplete.vim')
 
-" NeoBundle 'tpope/vim-surround'
-" NeoBundle 'mattn/emmet-vim'
-" NeoBundle 'Yggdroot/indentLine'
-" " let g:indentLine_faster = 1
-" " nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-" " let g:indentLine_color_term = 111
-" " let g:indentLine_color_gui = '#708090'
-" let g:indentLine_char = '¦'
+call dein#add('Shougo/vimshell', { 'rev': '3787e5'})
 
 call dein#add('MaxMEllon/molokai')
-" call dein#add('')
-
-call dein#add('Shougo/vimshell', { 'rev': '3787e5'})
+call dein#add('tpope/vim-surround')
+call dein#add('mattn/emmet-vim')
+call dein#add('Yggdroot/indentLine')
+let g:indentLine_faster = 1
+nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+let g:indentLine_color_term = 111
+let g:indentLine_color_gui = '#708090'
+let g:indentLine_char = '¦'
 
 call dein#end()
 
