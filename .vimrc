@@ -33,18 +33,23 @@ if dein#check_install()
 endif
 
 "***** set *********************************************
+set nocompatible
 " encord
 set encoding=utf-8
 " file encord
 set fileencodings=utf-8
 set fileformats=unix,dos,mac
+" filetypeの自動認識をon
+filetype on
 " swapファイルを作成しない
 set noswapfile
+" cursorline
+set cursorline
+" コマンドライン保管を便利に
+set wildmenu
 " line number display
 set number
 set relativenumber
-" display by relative number
-" set relativenumber
 " 不可視文字
 set list
 set listchars=eol:$,tab:>-,trail:_,extends:<
@@ -54,19 +59,30 @@ set ruler
 set matchpairs& matchpairs+=<:>
 " 不明
 set showmatch
+" 移動コマンドを使ったとき，行頭に移動しない
+set nostartofline
 " 不明
 set matchtime=3
+" use OS's clipboard
+set clipboard=unnamed,autoselect
 " no Beep
 set visualbell
-set vb t_vb
+set t_vb=
 if has('mouse')
   set mouse=a
 endif
-
+" 画面に余裕を持たせてスクロール
+set scrolloff=5
+" <F11>でpaste, nopaste を切り替え
+set pastetoggle=<F11>
+" bufferが変更されているとき，エラーでなく，保存するかを確認
+set confirm
 " 不明
 set infercase
 " not distinguish upper and lower
 set ignorecase
+" height of command line
+set cmdheight=2
 " 不明
 set smartcase
 " 不明
