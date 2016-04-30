@@ -42,6 +42,7 @@ set fileformats=unix,dos,mac
 set noswapfile
 " line number display
 set number
+set relativenumber
 " display by relative number
 " set relativenumber
 " 不可視文字
@@ -56,11 +57,11 @@ set showmatch
 " 不明
 set matchtime=3
 " no Beep
-" set visualbell
-" set vb t_vb
-" if has('mouse')
-"   set mouse=a
-" endif
+set visualbell
+set vb t_vb
+if has('mouse')
+  set mouse=a
+endif
 
 " 不明
 set infercase
