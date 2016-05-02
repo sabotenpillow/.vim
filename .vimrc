@@ -69,9 +69,9 @@ set clipboard=unnamed,autoselect
 " no Beep
 set visualbell
 set t_vb=
-if has('mouse')
-  set mouse=a
-endif
+" if has('mouse')
+"   set mouse=a
+" endif
 " 画面に余裕を持たせてスクロール
 set scrolloff=5
 " <F11>でpaste, nopaste を切り替え
