@@ -24,6 +24,25 @@ let g:indentLine_char = '¦'
 
 call dein#add('Townk/vim-autoclose')
 
+call dein#add('itchyny/lightline.vim')
+call dein#add('tpope/vim-fugitive')
+let g:lightline = {
+  \ 'colorscheme': 'default',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+  \ },
+  \ 'component_function': {
+  \   'fugitive': 'LightLineFugitive',
+  \ },
+  \ }
+function! LightLineFugitive()
+  return exists('*fugitive#head') ? fugitive#head() : ''
+endfunction
+
+set laststatus=2
+set noshowmode
+
 call dein#end()
 
 filetype plugin indent on     " required!
