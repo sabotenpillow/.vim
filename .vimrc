@@ -41,7 +41,6 @@ function! LightLineFugitive()
 endfunction
 
 set laststatus=2
-set noshowmode
 
 call dein#end()
 
@@ -102,14 +101,14 @@ set infercase
 " not distinguish upper and lower
 set ignorecase
 " height of command line
-set cmdheight=2
+set cmdheight=1
 " 不明
 set smartcase
-" 不明
+" エンターを押す前から検索開始
 set incsearch
-" 不明
+" 検索結果をハイライト
 set hlsearch
-" 不明
+" コマンド表示
 set showcmd
 " 
 set backspace=indent,eol,start
@@ -120,7 +119,7 @@ set shiftwidth=2  " 自動インデントでずれる幅
 set softtabstop=2 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 set autoindent    " 開業時に前の行のインデントを継続
 set smartindent   " 開業時に入力された行の末尾に合わせて次の行のインデントを増減
-" 不明
+" view cursorline
 set cursorline
 
 "***** normal & command **********************************************
@@ -132,6 +131,12 @@ set cursorline
 "***** normal mode ***************************************************
 " nnoremap ; ^
 nnoremap ; :
+
+
+"***** command line mode ***************************************************
+cnoremap gad Gwrite
+cnoremap gst Gstatus
+cnoremap gdf Gdiff
 
 "***** insert mode ***************************************************
 " insert
@@ -173,3 +178,4 @@ catch
   colorscheme desert
 endtry
 
+set noshowmode
