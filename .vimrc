@@ -43,6 +43,7 @@ endfunction
 set laststatus=2
 
 call dein#add('tpope/vim-endwise')
+call dein#add('tpope/vim-rails')
 
 call dein#end()
 
