@@ -125,6 +125,11 @@ set smartindent   " 開業時に入力された行の末尾に合わせて次の
 " view cursorline
 set cursorline
 
+set completeopt=menuone
+for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
+  exec "imap <expr> " . k . " pumvisible() ? '" . k . "' : '" . k . "\<C-X>\<C-P>\<C-N>'"
+endfor
+
 "***** normal & command **********************************************
 "noremap <silent> <C-,> ^
 "noremap <silent> <C-.> $
