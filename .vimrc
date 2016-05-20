@@ -42,6 +42,8 @@ endfunction
 
 set laststatus=2
 
+call dein#add('tpope/vim-endwise')
+
 call dein#end()
 
 filetype plugin indent on     " required!
