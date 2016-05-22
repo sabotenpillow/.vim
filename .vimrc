@@ -44,6 +44,8 @@ set laststatus=2
 
 call dein#add('tpope/vim-endwise')
 call dein#add('tpope/vim-rails')
+call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/vimfiler')
 
 call dein#end()
 
