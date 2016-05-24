@@ -1,79 +1,49 @@
-if &compatible
-  set nocompatible               " Be iMproved
+"***********************************************************************
+" dein.vim
+"***********************************************************************
+
+" プラグインのインストールされるディレクトリ
+let s:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+" dein.vim がなければ，install
+if &runtimepath !~#'/dein.vim'
+"   if !isdirectory(s:dein_repo_dir)
+"     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+"   endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+" plugin setting
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
-call dein#begin(expand('~/.vim/dein'))
+  let g:rc_dir    = expand('~/.vim/rc')
+  let s:toml      = g:rc_dir . '/dein.toml'
+  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
-call dein#add('Shougo/dein.vim')
-" call dein#add('Shougo/neocomplete.vim')
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-call dein#add('Shougo/vimshell', { 'rev': '3787e5'})
-
-call dein#add('MaxMEllon/molokai')
-call dein#add('tpope/vim-surround')
-call dein#add('mattn/emmet-vim')
-
-call dein#add('Yggdroot/indentLine')
-let g:indentLine_faster = 1
-nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-let g:indentLine_color_term = 111
-let g:indentLine_color_gui = '#708090'
-let g:indentLine_char = '¦'
-
-call dein#add('Townk/vim-autoclose')
-
-call dein#add('itchyny/lightline.vim')
-call dein#add('tpope/vim-fugitive')
-let g:lightline = {
-  \ 'colorscheme': 'default',
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-  \ },
-  \ 'component_function': {
-  \   'fugitive': 'LightLineFugitive',
-  \ },
-  \ }
-function! LightLineFugitive()
-  return exists('*fugitive#head') ? fugitive#head() : ''
-endfunction
-
-set laststatus=2
-
-call dein#add('tpope/vim-endwise')
-call dein#add('tpope/vim-rails')
-call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/vimfiler')
-call dein#add('Shougo/neoyank.vim')
-
-call dein#end()
-
-filetype plugin indent on     " required!
-
+  call dein#end()
+  call dein#save_state()
+endif
 
 if dein#check_install()
   call dein#install()
 endif
 
 "***** set *********************************************
-set nocompatible
 " encord
 set encoding=utf-8
 " file encord
 set fileencodings=utf-8
 set fileformats=unix,dos,mac
-" filetypeの自動認識をon
-filetype on
 " swapファイルを作成しない
 set noswapfile
-" cursorline
-set cursorline
-" コマンドライン保管を便利に
-set wildmenu
 " line number display
 set number
+" display by relative number
 set relativenumber
 " 不可視文字
 set list
@@ -84,18 +54,15 @@ set ruler
 set matchpairs& matchpairs+=<:>
 " 不明
 set showmatch
-" 移動コマンドを使ったとき，行頭に移動しない
-set nostartofline
 " 不明
 set matchtime=3
-" use OS's clipboard
-set clipboard=unnamed,autoselect
 " no Beep
 set visualbell
 set t_vb=
 " if has('mouse')
 "   set mouse=a
 " endif
+
 " 画面に余裕を持たせてスクロール
 set scrolloff=5
 " <F11>でpaste, nopaste を切り替え
@@ -110,11 +77,11 @@ set ignorecase
 set cmdheight=1
 " 不明
 set smartcase
-" エンターを押す前から検索開始
+" 不明
 set incsearch
-" 検索結果をハイライト
+" 不明
 set hlsearch
-" コマンド表示
+" 不明
 set showcmd
 " 
 set backspace=indent,eol,start
@@ -125,13 +92,8 @@ set shiftwidth=2  " 自動インデントでずれる幅
 set softtabstop=2 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 set autoindent    " 開業時に前の行のインデントを継続
 set smartindent   " 開業時に入力された行の末尾に合わせて次の行のインデントを増減
-" view cursorline
+" 不明
 set cursorline
-
-set completeopt=menuone
-for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
-  exec "imap <expr> " . k . " pumvisible() ? '" . k . "' : '" . k . "\<C-X>\<C-P>\<C-N>'"
-endfor
 
 "***** normal & command **********************************************
 "noremap <silent> <C-,> ^
@@ -142,12 +104,6 @@ endfor
 "***** normal mode ***************************************************
 " nnoremap ; ^
 nnoremap ; :
-
-
-"***** command line mode ***************************************************
-cnoremap gad Gwrite
-cnoremap gst Gstatus
-cnoremap gdf Gdiff
 
 "***** insert mode ***************************************************
 " insert
@@ -163,21 +119,17 @@ inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <DEL>
 
 " 
-" inoremap { {}<left>
-" inoremap [ []<left>
-" inoremap ( ()<left>
-" inoremap " ""<left>
-" inoremap ' ''<left>
-" inoremap <> <><left>
+inoremap { {}<left>
+inoremap [ []<left>
+inoremap ( ()<left>
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap <> <><left>
 
-"***********************************************************************
-" plugin
-"***********************************************************************
 
 
 " カラースキーマの設定--------------------------------------------------
 
-filetype indent on
 syntax on
 
 " 色の設定(syntax onのあと) molokai
@@ -189,4 +141,3 @@ catch
   colorscheme desert
 endtry
 
-set noshowmode

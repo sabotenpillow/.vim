@@ -1,0 +1,81 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+
+[[plugins]]
+repo = 'Shougo/vimshell'
+rev  = '3787e5'
+
+[[plugins]]
+repo = 'MaxMEllon/molokai'
+hook_post_source = '''
+  syntax on
+  set t_Co=256
+  try
+    colorscheme molokai
+    let g:molokai_original = 1
+  catch
+    colorscheme desert
+  endtry
+'''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_post_source = '''
+  let g:indentLine_faster = 1
+  nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+  let g:indentLine_color_term = 111
+  let g:indentLine_color_gui = '#708090'
+  let g:indentLine_char = '¦'
+'''
+
+[[plugins]]
+repo = 'Townk/vim-autoclose'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+hook_post_source = '''
+  let g:lightline = {
+    \ 'colorscheme': 'default',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'fugitive': 'LightLineFugitive',
+    \ },
+    \ }
+'''
+hook_add = '''
+  function! LightLineFugitive()
+    return exists('*fugitive#head') ? fugitive#head() : ''
+  endfunction
+  set laststatus=2
+'''
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'Shougo/vimfiler'
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+
