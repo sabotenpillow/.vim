@@ -8,9 +8,10 @@ let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 " dein.vim がなければ，install
 if &runtimepath !~#'/dein.vim'
-"   if !isdirectory(s:dein_repo_dir)
-"     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-"   endif
+  if !isdirectory(s:dein_repo_dir)
+    " execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    execute 'sh ./installer.sh dein'
+  endif
   execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
