@@ -10,7 +10,7 @@ rev  = '3787e5'
 
 [[plugins]]
 repo = 'MaxMEllon/molokai'
-hook_post_source = '''
+hook_add = '''
   syntax on
   set t_Co=256
   try
@@ -29,7 +29,7 @@ repo = 'mattn/emmet-vim'
 
 [[plugins]]
 repo = 'Yggdroot/indentLine'
-hook_post_source = '''
+hook_add = '''
   let g:indentLine_faster = 1
   nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
   let g:indentLine_color_term = 111
@@ -45,7 +45,7 @@ repo = 'itchyny/lightline.vim'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
-hook_post_source = '''
+hook_add = '''
   let g:lightline = {
     \ 'colorscheme': 'default',
     \ 'active': {
@@ -56,8 +56,6 @@ hook_post_source = '''
     \   'fugitive': 'LightLineFugitive',
     \ },
     \ }
-'''
-hook_add = '''
   function! LightLineFugitive()
     return exists('*fugitive#head') ? fugitive#head() : ''
   endfunction
@@ -66,9 +64,21 @@ hook_add = '''
 
 [[plugins]]
 repo = 'tpope/vim-endwise'
+on_ft = ['rb', 'erb']
 
 [[plugins]]
 repo = 'tpope/vim-rails'
+on_ft = ['rb', 'erb']
+
+[[plugins]]
+repo = 'szw/vim-tags'
+
+[[plugins]]
+repo = 'soramugi/auto-ctags.vim'
+hook_add = '''
+  let g:auto_ctags = 1
+  set tags
+'''
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
