@@ -77,7 +77,7 @@ repo = 'szw/vim-tags'
 repo = 'soramugi/auto-ctags.vim'
 hook_add = '''
   let g:auto_ctags = 1
-  set tags
+  set tags=./.tags;
 '''
 
 [[plugins]]
