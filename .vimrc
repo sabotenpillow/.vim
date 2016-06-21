@@ -82,7 +82,7 @@ set smartcase
 set incsearch
 " 不明
 set hlsearch
-" 不明
+" show inputing command
 set showcmd
 " 
 set backspace=indent,eol,start
@@ -93,8 +93,10 @@ set shiftwidth=2  " 自動インデントでずれる幅
 set softtabstop=2 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 set autoindent    " 開業時に前の行のインデントを継続
 set smartindent   " 開業時に入力された行の末尾に合わせて次の行のインデントを増減
-" 不明
+" display cursor line
 set cursorline
+" set background color
+set background=dark
 
 "***** normal & command **********************************************
 "noremap <silent> <C-,> ^
@@ -104,7 +106,7 @@ set cursorline
 
 "***** normal mode ***************************************************
 " nnoremap ; ^
-nnoremap ; :
+" nnoremap ; :
 
 "***** insert mode ***************************************************
 " insert
