@@ -2,3 +2,6 @@ bundle/
 .netrwhist
 dein/
 tags.lock
+
+autoload/
+plugged/
