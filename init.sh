@@ -1,14 +1,10 @@
 #!/bin/sh
 
-if ! [ -d bundle ]; then
-  if [`which git`]; then
-    mkdir ~/.vim/bundle
-    cd ~/.vim/bundle && git clone https://github.com/Shougo/neobundle.vim.git
-  else
-    echo 'git not installed'
-  fi
+if ! [ -d autoload ]; then
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 else
-  echo 'neobundle is already isntalled'
+  echo 'already cloned vim-plug'
 fi
 
 if ! [ -L $HOME/.vimrc ]; then
