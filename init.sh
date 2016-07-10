@@ -1,8 +1,14 @@
-#!/usr/bin/sh
+#!/bin/sh
 
-if [`which git`]; then
-  mkdir ~/.vim/bundle
-  cd ~/.vim/bundle && git clone https://github.com/Shougo/neobundle.vim.git
+if ! [ -d autoload ]; then
+ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+else
+  echo 'already cloned vim-plug'
 fi
 
-cd && ln -s .vim/.vimrc
+if ! [ -L $HOME/.vimrc ]; then
+  cd && ln -s .vim/.vimrc
+else
+  echo 'already created symbolic link to .vimrc'
+fi
