@@ -5,33 +5,34 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'MaxMEllon/molokai'
+Plug 'jonathanfilip/vim-lucius'
 Plug 'cocopon/iceberg.vim'
 
 Plug 'tpope/vim-surround'
 
 Plug 'Yggdroot/indentLine'
-let g:indentLine_faster = 1
-nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-let g:indentLine_color_term = 111
-let g:indentLine_color_gui = '#708090'
-let g:indentLine_char = '¦'
-Plug 'itchyny/lightline.vim'
+  let g:indentLine_faster = 1
+  nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+  let g:indentLine_color_term = 111
+  let g:indentLine_color_gui = '#708090'
+  let g:indentLine_char = '¦'
 
+Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
-let g:lightline = {
-  \ 'colorscheme': 'default',
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-  \ },
-  \ 'component_function': {
-  \   'fugitive': 'LightLineFugitive',
-  \ },
-  \ }
-function! LightLineFugitive()
-  return exists('*fugitive#head') ? fugitive#head() : ''
-endfunction
-set laststatus=2
+  let g:lightline = {
+    \ 'colorscheme': 'default',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'fugitive': 'LightLineFugitive',
+    \ },
+    \ }
+  function! LightLineFugitive()
+    return exists('*fugitive#head') ? fugitive#head() : ''
+  endfunction
+  set laststatus=2
 
 " Plug ''
 
