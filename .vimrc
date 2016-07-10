@@ -2,6 +2,7 @@
 " z-plug
 "***********************************************************************
 
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'MaxMEllon/molokai'
@@ -9,6 +10,7 @@ Plug 'jonathanfilip/vim-lucius'
 Plug 'cocopon/iceberg.vim'
 
 Plug 'tpope/vim-surround'
+Plug 'cohama/lexima.vim'
 
 Plug 'Yggdroot/indentLine'
   let g:indentLine_faster = 1
@@ -128,12 +130,12 @@ inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <DEL>
 
 " 
-inoremap { {}<left>
-inoremap [ []<left>
-inoremap ( ()<left>
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap <> <><left>
+" inoremap { {}<left>
+" inoremap [ []<left>
+" inoremap ( ()<left>
+" inoremap " ""<left>
+" inoremap ' ''<left>
+" inoremap <> <><left>
 
 
 
