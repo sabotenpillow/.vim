@@ -15,7 +15,7 @@ Plug 'cohama/lexima.vim'
 Plug 'Yggdroot/indentLine'
   let g:indentLine_faster = 1
   nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-  let g:indentLine_color_term = 111
+  let g:indentLine_color_term = 207 "111
   let g:indentLine_color_gui = '#708090'
   let g:indentLine_char = '¦'
 
