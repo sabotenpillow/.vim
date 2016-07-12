@@ -36,7 +36,7 @@ Plug 'tpope/vim-fugitive'
   endfunction
   set laststatus=2
 
-" Plug ''
+Plug 'tpope/vim-rails'
 
 call plug#end()
 
