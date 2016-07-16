@@ -1,5 +1,5 @@
 "***********************************************************************
-" z-plug
+" vim-plug
 "***********************************************************************
 
 call plug#begin('~/.vim/plugged')
@@ -40,39 +40,40 @@ Plug 'slim-template/vim-slim'
 
 call plug#end()
 
-filetype plugin indent on
+filetype off
+filetype plugin indent off
 
 "***** filetype ****************************************
 " set filetype {{{
-function! s:set_filetype(...)
-  execute 'Autocmd BufNewFile,BufRead ' . '*'.a:1 . ' set filetype=' . a:2
-endfunction
-command! -nargs=* SetFileType call s:set_filetype(<f-args>)
-
-let s:MyFileTypes = [
-  \   {'file' : '.md',       'type' : 'markdown'},
-  \   {'file' : '.slim',     'type' : 'slim'},
-  \   {'file' : '.less',     'type' : 'less'},
-  \   {'file' : '.coffee',   'type' : 'coffee'},
-  \   {'file' : '.scss',     'type' : 'scss'},
-  \   {'file' : '.sass',     'type' : 'sass'},
-  \   {'file' : '.cjsx',     'type' : 'coffee'},
-  \   {'file' : '.exs',      'type' : 'elixir'},
-  \   {'file' : '.ex',       'type' : 'elixir'},
-  \   {'file' : '.toml',     'type' : 'toml'},
-  \   {'file' : '_spec.rb',  'type' : 'rspec'},
-  \   {'file' : '.jsx',      'type' : 'javascript.jsx'},
-  \   {'file' : '.es6',      'type' : 'javascript'},
-  \   {'file' : '.react.js', 'type' : 'javascript.jsx'},
-  \   {'file' : '.fish',     'type' : 'fish'},
-  \   {'file' : '.babelrc',  'type' : 'json'},
-  \   {'file' : '.eslintrc', 'type' : 'yaml'},
-  \ ]
-
-for s:e in s:MyFileTypes
-  execute 'SetFileType ' . s:e['file'] . ' ' . s:e['type']
-endfor
-" }}}
+" function! s:set_filetype(...)
+"   execute 'Autocmd BufRead,BufNewFile ' . '*'.a:1 . ' set filetype=' . a:2
+" endfunction
+" command! -nargs=* SetFileType call s:set_filetype(<f-args>)
+" 
+" let s:MyFileTypes = [
+"   \   {'file' : '.md',       'type' : 'markdown'},
+"   \   {'file' : '.slim',     'type' : 'slim'},
+"   \   {'file' : '.less',     'type' : 'less'},
+"   \   {'file' : '.coffee',   'type' : 'coffee'},
+"   \   {'file' : '.scss',     'type' : 'scss'},
+"   \   {'file' : '.sass',     'type' : 'sass'},
+"   \   {'file' : '.cjsx',     'type' : 'coffee'},
+"   \   {'file' : '.exs',      'type' : 'elixir'},
+"   \   {'file' : '.ex',       'type' : 'elixir'},
+"   \   {'file' : '.toml',     'type' : 'toml'},
+"   \   {'file' : '_spec.rb',  'type' : 'rspec'},
+"   \   {'file' : '.jsx',      'type' : 'javascript.jsx'},
+"   \   {'file' : '.es6',      'type' : 'javascript'},
+"   \   {'file' : '.react.js', 'type' : 'javascript.jsx'},
+"   \   {'file' : '.fish',     'type' : 'fish'},
+"   \   {'file' : '.babelrc',  'type' : 'json'},
+"   \   {'file' : '.eslintrc', 'type' : 'yaml'},
+"   \ ]
+" 
+" for s:e in s:MyFileTypes
+"   execute 'SetFileType ' . s:e['file'] . ' ' . s:e['type']
+" endfor
+" " }}}
 
 
 "***** set *********************************************
