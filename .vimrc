@@ -100,8 +100,8 @@ if expand('%:t') =~ '.*\.go'
   set shiftwidth=2  " 自動インデントでずれる幅
   set softtabstop=2 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 endif
-set autoindent    " 開業時に前の行のインデントを継続
-set smartindent   " 開業時に入力された行の末尾に合わせて次の行のインデントを増減
+set autoindent    " 改行時に前の行のインデントを継続
+set smartindent   " 改行時に入力された行の末尾に合わせて次の行のインデントを増減
 " display cursor line
 set cursorline
 " set background color
