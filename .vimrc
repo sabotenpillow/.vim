@@ -2,7 +2,6 @@
 " z-plug
 "***********************************************************************
 
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'MaxMEllon/molokai'
@@ -129,12 +128,14 @@ set showcmd
 " 
 set backspace=indent,eol,start
 " indent
-set expandtab     " タブ入力を複数の空白入力に置き換える
-set tabstop=2     " 画面上でタブ文字が占める幅
-set shiftwidth=2  " 自動インデントでずれる幅
-set softtabstop=2 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
-set autoindent    " 開業時に前の行のインデントを継続
-set smartindent   " 開業時に入力された行の末尾に合わせて次の行のインデントを増減
+if expand('%:t') =~ '.*\.go'
+  set expandtab     " タブ入力を複数の空白入力に置き換える
+  set tabstop=2     " 画面上でタブ文字が占める幅
+  set shiftwidth=2  " 自動インデントでずれる幅
+  set softtabstop=2 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
+endif
+set autoindent    " 改行時に前の行のインデントを継続
+set smartindent   " 改行時に入力された行の末尾に合わせて次の行のインデントを増減
 " display cursor line
 set cursorline
 " set background color
@@ -152,7 +153,6 @@ set background=dark
 
 "***** insert mode ***************************************************
 " insert
-" inoremap <silent> <C-j> <ESC>
 inoremap <silent> jj <ESC>
 inoremap <silent> <C-j> j
 
@@ -163,19 +163,10 @@ inoremap <silent> <C-l> <right>
 inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <DEL>
 
-" 
-" inoremap { {}<left>
-" inoremap [ []<left>
-" inoremap ( ()<left>
-" inoremap " ""<left>
-" inoremap ' ''<left>
-" inoremap <> <><left>
-
-
 
 " カラースキーマの設定--------------------------------------------------
 
-syntax on
+" syntax on
 
 " 色の設定(syntax onのあと) molokai
 set t_Co=256
@@ -183,6 +174,10 @@ try
   colorscheme iceberg
   " let g:molokai_original = 1
 catch
-  colorscheme desert
+  colorscheme pablo
 endtry
 
+set t_ut=    " see https://sunaku.github.io/vim-256color-bce.htmlet
+syntax on
+filetype indent on
+set secure
