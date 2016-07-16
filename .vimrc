@@ -2,7 +2,6 @@
 " z-plug
 "***********************************************************************
 
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'MaxMEllon/molokai'
@@ -118,7 +117,6 @@ set background=dark
 
 "***** insert mode ***************************************************
 " insert
-" inoremap <silent> <C-j> <ESC>
 inoremap <silent> jj <ESC>
 inoremap <silent> <C-j> j
 
@@ -128,15 +126,6 @@ inoremap <silent> <C-l> <right>
 " backspase & delete
 inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <DEL>
-
-" 
-" inoremap { {}<left>
-" inoremap [ []<left>
-" inoremap ( ()<left>
-" inoremap " ""<left>
-" inoremap ' ''<left>
-" inoremap <> <><left>
-
 
 
 " カラースキーマの設定--------------------------------------------------
@@ -149,6 +138,6 @@ try
   colorscheme iceberg
   " let g:molokai_original = 1
 catch
-  colorscheme desert
+  colorscheme pablo
 endtry
 
