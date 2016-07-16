@@ -130,7 +130,7 @@ inoremap <silent> <C-d> <DEL>
 
 " カラースキーマの設定--------------------------------------------------
 
-syntax on
+" syntax on
 
 " 色の設定(syntax onのあと) molokai
 set t_Co=256
@@ -141,3 +141,7 @@ catch
   colorscheme pablo
 endtry
 
+set t_ut=    " see https://sunaku.github.io/vim-256color-bce.htmlet
+syntax on
+filetype indent on
+set secure
