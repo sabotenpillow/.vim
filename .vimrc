@@ -10,11 +10,16 @@ Plug 'cocopon/iceberg.vim'
 
 Plug 'tpope/vim-surround'
 Plug 'cohama/lexima.vim'
+Plug 'osyo-manga/vim-over'
+
+Plug 'slim-template/vim-slim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript.jsx'] }
 
 Plug 'Yggdroot/indentLine'
   let g:indentLine_faster = 1
   nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-  let g:indentLine_color_term = 207 "111
+  let g:indentLine_color_term = 207
   let g:indentLine_color_gui = '#708090'
   let g:indentLine_char = '¦'
 
@@ -36,7 +41,7 @@ Plug 'tpope/vim-fugitive'
   set laststatus=2
 
 Plug 'tpope/vim-rails'
-Plug 'slim-template/vim-slim'
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 
@@ -74,6 +79,13 @@ filetype plugin indent off
 "   execute 'SetFileType ' . s:e['file'] . ' ' . s:e['type']
 " endfor
 " " }}}
+au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
+au BufRead,BufNewFile,BufReadPre *.slim set filetype=slim
+" let g:indentLine_faster = 1
+" nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+" let g:indentLine_color_term = 207 "111
+" let g:indentLine_color_gui = '#708090'
+" let g:indentLine_char = '¦'
 
 
 "***** set *********************************************
@@ -84,13 +96,18 @@ set fileencodings=utf-8
 set fileformats=unix,dos,mac
 " swapファイルを作成しない
 set noswapfile
-" line number display
+" set directory=$HOME/vim_swap
+" backup
+set nobackup
+" set backup
+" set backupdir=$HOME/vim_backup
+" liny number display
 set number
 " display by relative number
 set relativenumber
 " 不可視文字
 set list
-set listchars=eol:$,tab:>-,trail:_,extends:<
+set listchars=eol:$,tab:»\ ,trail:_,extends:<
 " 現在行
 set ruler
 " ペアマッチに <> を追加
@@ -105,6 +122,7 @@ set t_vb=
 " if has('mouse')
 "   set mouse=a
 " endif
+" set virtualedit=onemore
 
 " 画面に余裕を持たせてスクロール
 set scrolloff=5
@@ -127,9 +145,12 @@ set hlsearch
 " show inputing command
 set showcmd
 " 
+set whichwrap=b,s,h,l,<,>,[,]
+" set nowrapscan
+" 
 set backspace=indent,eol,start
 " indent
-if expand('%:t') =~ '.*\.go'
+if expand('%:e') != 'go'
   set expandtab     " タブ入力を複数の空白入力に置き換える
   set tabstop=2     " 画面上でタブ文字が占める幅
   set shiftwidth=2  " 自動インデントでずれる幅
@@ -180,5 +201,5 @@ endtry
 
 set t_ut=    " see https://sunaku.github.io/vim-256color-bce.htmlet
 syntax on
-filetype indent on
+filetype plugin indent on
 set secure
