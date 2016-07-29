@@ -11,6 +11,7 @@ Plug 'cocopon/iceberg.vim'
 Plug 'tpope/vim-surround'
 Plug 'cohama/lexima.vim'
 Plug 'osyo-manga/vim-over'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'slim-template/vim-slim'
 Plug 'kchmck/vim-coffee-script'
