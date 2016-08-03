@@ -186,6 +186,8 @@ inoremap <silent> <C-l> <right>
 inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <DEL>
 
+"***** insert mode ***************************************************
+vnoremap * "zy:let @/ = @z<CR>n
 
 " カラースキーマの設定--------------------------------------------------
 
