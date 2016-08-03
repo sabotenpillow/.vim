@@ -12,6 +12,7 @@ Plug 'tpope/vim-surround'
 Plug 'cohama/lexima.vim'
 Plug 'osyo-manga/vim-over'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/vim-easy-align'
 
 Plug 'slim-template/vim-slim'
 Plug 'kchmck/vim-coffee-script'
@@ -186,8 +187,24 @@ inoremap <silent> <C-l> <right>
 inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <DEL>
 
-"***** insert mode ***************************************************
+"***** visual mode ***************************************************
 vnoremap * "zy:let @/ = @z<CR>n
+
+"***** plugins ***************************************************
+let s:plug = {
+  \ "plugs": get(g:, 'plugs', {})
+  \ }
+function! s:plug.is_installed(name)
+  return has_key(self.plugs, a:name) ? isdirectory(self.plugs[a:name].dir) : 0
+endfunction
+" }}}
+
+if s:plug.is_installed('vim-easy-align') "{{{
+  vnoremap <Enter> :EasyAlign<CR>
+  xmap ga <Plug>(EasyAlign)
+  nmap ga <Plug>(EasyAlign)
+endif
+" }}}
 
 " カラースキーマの設定--------------------------------------------------
 
