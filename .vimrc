@@ -19,28 +19,9 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript.jsx'] }
 
 Plug 'Yggdroot/indentLine'
-  let g:indentLine_faster = 1
-  nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-  let g:indentLine_color_term = 207
-  let g:indentLine_color_gui = '#708090'
-  let g:indentLine_char = '¦'
 
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
-  let g:lightline = {
-    \ 'colorscheme': 'default',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'fugitive': 'LightLineFugitive',
-    \ },
-    \ }
-  function! LightLineFugitive()
-    return exists('*fugitive#head') ? fugitive#head() : ''
-  endfunction
-  set laststatus=2
 
 Plug 'tpope/vim-rails'
 Plug 'mattn/emmet-vim'
@@ -197,6 +178,33 @@ let s:plug = {
 function! s:plug.is_installed(name)
   return has_key(self.plugs, a:name) ? isdirectory(self.plugs[a:name].dir) : 0
 endfunction
+" }}}
+
+if s:plug.is_installed('indentLine') " {{{
+  let g:indentLine_faster = 1
+  nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+  let g:indentLine_color_term = 207
+  let g:indentLine_color_gui = '#708090'
+  let g:indentLine_char = '¦'
+endif
+" }}}
+
+if s:plug.is_installed('lightline.vim') "{{{
+  let g:lightline = {
+    \ 'colorscheme': 'default',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'fugitive': 'LightLineFugitive',
+    \ },
+    \ }
+  function! LightLineFugitive()
+    return exists('*fugitive#head') ? fugitive#head() : ''
+  endfunction
+  set laststatus=2
+endif
 " }}}
 
 if s:plug.is_installed('vim-easy-align') "{{{
