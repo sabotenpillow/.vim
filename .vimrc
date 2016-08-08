@@ -90,7 +90,7 @@ set number
 set relativenumber
 " 不可視文字
 set list
-set listchars=eol:$,tab:»\ ,trail:_,extends:<
+set listchars=eol:¬,tab:»\ ,trail:_,extends:<
 " 現在行
 set ruler
 " ペアマッチに <> を追加
