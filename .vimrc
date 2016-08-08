@@ -157,11 +157,11 @@ endif
 " share yank data on other vim process
 " see: http://shirakiya.hatenablog.com/entry/2015/01/30/025257
 " Linuxの場合はviminfoを用いてヤンクデータを共有
-let OSTYPE = system('uname')
-if OSTYPE == "Linux\n"
-    noremap y y:wv<CR>
-    noremap p :rv!<CR>p
-endif
+" let OSTYPE = system('uname')
+" if OSTYPE == "Linux\n"
+"     noremap y y:wv<CR>
+"     noremap p :rv!<CR>p
+" endif
 
 "***** normal & command **********************************************
 "noremap <silent> <C-,> ^
