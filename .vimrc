@@ -106,6 +106,8 @@ set t_vb=
 "   set mouse=a
 " endif
 " set virtualedit=onemore
+" set viminfo
+set viminfo='50,\"1877,:0,h,n~/.vim/.viminfo
 
 " 画面に余裕を持たせてスクロール
 set scrolloff=5

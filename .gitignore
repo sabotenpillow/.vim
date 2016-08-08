@@ -5,3 +5,5 @@ tags.lock
 
 autoload/
 plugged/
+
+.viminfo
