@@ -7,6 +7,12 @@ else
   echo 'already cloned vim-plug'
 fi
 
+if ! [ -d undo ]; then
+  mkdir undo
+else
+  echo 'undo directory is already existed'
+fi
+
 if ! [ -L $HOME/.vimrc ]; then
   cd && ln -s .vim/.vimrc
 else

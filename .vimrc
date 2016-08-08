@@ -148,6 +148,12 @@ set cursorline
 " set background color
 set background=dark
 
+" regist undo history
+if has('persistent_undo')
+  set undodir=~/.vim/undo
+  set undofile
+endif
+
 " share yank data on other vim process
 " see: http://shirakiya.hatenablog.com/entry/2015/01/30/025257
 " Linuxの場合はviminfoを用いてヤンクデータを共有
