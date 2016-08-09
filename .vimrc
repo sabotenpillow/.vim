@@ -14,6 +14,7 @@ Plug 'osyo-manga/vim-over'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/vim-easy-align'
 Plug 'LeafCage/yankround.vim'
+Plug 'kana/vim-smartchr'
 
 Plug 'slim-template/vim-slim'
 Plug 'kchmck/vim-coffee-script'
