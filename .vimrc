@@ -13,6 +13,7 @@ Plug 'cohama/lexima.vim'
 Plug 'osyo-manga/vim-over'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/vim-easy-align'
+Plug 'LeafCage/yankround.vim'
 
 Plug 'slim-template/vim-slim'
 Plug 'kchmck/vim-coffee-script'
@@ -241,6 +242,17 @@ if s:plug.is_installed('vim-easy-align') "{{{
   nmap ga <Plug>(EasyAlign)
 endif
 " }}}
+
+if s:plug.is_installed('yankround.vim')
+  nmap p <Plug>(yankround-p)
+  xmap p <Plug>(yankround-p)
+  nmap P <Plug>(yankround-P)
+  nmap gp <Plug>(yankround-gp)
+  xmap gp <Plug>(yankround-gp)
+  nmap gP <Plug>(yankround-gP)
+  nmap <C-p> <Plug>(yankround-prev)
+  nmap <C-n> <Plug>(yankround-next)
+endif
 
 " カラースキーマの設定--------------------------------------------------
 
