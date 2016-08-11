@@ -16,8 +16,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'LeafCage/yankround.vim'
 Plug 'kana/vim-smartchr'
 
-Plug 'slim-template/vim-slim'
-Plug 'kchmck/vim-coffee-script'
+Plug 'slim-template/vim-slim', { 'for': 'slim' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript.jsx'] }
 
 Plug 'Yggdroot/indentLine'
