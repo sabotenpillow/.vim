@@ -19,6 +19,7 @@ Plug 'kana/vim-smartchr'
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript.jsx'] }
+Plug 'elzr/vim-json', { 'for': ['json'] }
 
 Plug 'Yggdroot/indentLine'
 
