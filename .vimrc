@@ -19,7 +19,7 @@ Plug 'kana/vim-smartchr'
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript.jsx'] }
-Plug 'elzr/vim-json', { 'for': ['json.ika'] }
+Plug 'elzr/vim-json', { 'for': ['json','ika'] }
 
 Plug 'Yggdroot/indentLine'
 
@@ -58,6 +58,7 @@ let s:MyFileTypes = [
   \   {'file' : '.react.js', 'type' : 'javascript.jsx'},
   \   {'file' : '.fish',     'type' : 'fish'},
   \   {'file' : '.babelrc',  'type' : 'json'},
+  \   {'file' : '.ika',      'type' : 'ika'},
   \   {'file' : '.eslintrc', 'type' : 'yaml'},
   \ ]
 
