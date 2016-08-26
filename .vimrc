@@ -18,6 +18,7 @@ Plug 'LeafCage/yankround.vim'
 Plug 'kana/vim-smartchr'
 Plug 'Shougo/neocomplete.vim'
 Plug 'osyo-manga/vim-monster', { 'for': 'ruby' }
+Plug 'moll/vim-node'
 
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
@@ -361,6 +362,14 @@ if s:plug.is_installed('todesking/ruby-hl-lvar.vim')
   nmap <leader>he <Plug>(ruby_hl_lvar-enable)
   nmap <leader>hd <Plug>(ruby_hl_lvar-disable)
   nmap <leader>hr <Plug>(ruby_hl_lvar-refresh)
+endif
+
+if s:plug.is_installed('moll/vim-node')
+  autocmd User Node
+    \ if &filetype == "javascript" |
+    \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
+    \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
+    \ endif
 endif
 
 " カラースキーマの設定--------------------------------------------------
