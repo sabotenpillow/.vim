@@ -25,10 +25,10 @@ Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript.jsx'] }
 Plug 'elzr/vim-json', { 'for': ['json','ika'] }
 
 Plug 'Yggdroot/indentLine'
-
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 
+Plug 'todesking/ruby_hl_lvar.vim', { 'for': 'ruby' }
 Plug 'tpope/vim-rails'
 Plug 'mattn/emmet-vim'
 
@@ -346,6 +346,21 @@ if s:plug.is_installed('vim-monster')
   let g:deoplete#sources#omni#input_patterns = {
     \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
     \}
+endif
+
+if s:plug.is_installed('todesking/ruby-hl-lvar.vim')
+  " Highligt group name for local variable
+  " Default: 'Identifier'
+  let g:ruby_hl_lvar_hl_group = 'RubyLocalVariable'
+
+  " Auto enable and refresh highlight when text is changed. Useful but bit slow.
+  " Default: 1
+  let g:ruby_hl_lvar_auto_enable = 0
+
+  " If you wish to control the plugin manually, map these functions.
+  nmap <leader>he <Plug>(ruby_hl_lvar-enable)
+  nmap <leader>hd <Plug>(ruby_hl_lvar-disable)
+  nmap <leader>hr <Plug>(ruby_hl_lvar-refresh)
 endif
 
 " カラースキーマの設定--------------------------------------------------
