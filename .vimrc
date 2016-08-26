@@ -223,11 +223,12 @@ if s:plug.is_installed('lightline.vim') "{{{
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'readonly', 'filename', 'modified' ] ]
-    \ },}
+    \ },
+    \ 'separator': { 'left': "\ue0c6", 'right': "" },
+    \ 'subseparator': { 'left': '|', 'right': '|' },}
     " \ 'component_function': {
     " \   'fugitive': 'LightLineFugitive',
-    " \ },
-    " \ }
+    " \ },}
   function! LightLineFugitive()
     return exists('*fugitive#head') ? fugitive#head() : ''
   endfunction
