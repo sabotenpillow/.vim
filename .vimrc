@@ -17,6 +17,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'LeafCage/yankround.vim'
 Plug 'kana/vim-smartchr'
 Plug 'Shougo/neocomplete.vim'
+Plug 'osyo-manga/vim-monster', { 'for': 'ruby' }
 
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
@@ -324,6 +325,27 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+endif
+
+if s:plug.is_installed('vim-monster')
+  " Use neocomplete.vim
+  let g:neocomplete#sources#omni#input_patterns = {
+    \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+    \}
+
+  " Set async completion.
+  let g:monster#completion#rcodetools#backend = "async_rct_complete"
+
+  " With neocomplete.vim
+  let g:neocomplete#sources#omni#input_patterns = {
+    \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+    \}
+
+  " With deoplete.nvim
+  let g:monster#completion#rcodetools#backend = "async_rct_complete"
+  let g:deoplete#sources#omni#input_patterns = {
+    \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+    \}
 endif
 
 " カラースキーマの設定--------------------------------------------------
