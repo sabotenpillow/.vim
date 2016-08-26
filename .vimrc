@@ -8,6 +8,7 @@ Plug 'MaxMEllon/molokai'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'cocopon/iceberg.vim'
 
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'tpope/vim-surround'
 Plug 'cohama/lexima.vim'
 Plug 'osyo-manga/vim-over'
