@@ -13,10 +13,13 @@ Plug 'cohama/lexima.vim'
 Plug 'osyo-manga/vim-over'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/vim-easy-align'
+Plug 'LeafCage/yankround.vim'
+Plug 'kana/vim-smartchr'
 
-Plug 'slim-template/vim-slim'
-Plug 'kchmck/vim-coffee-script'
+Plug 'slim-template/vim-slim', { 'for': 'slim' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript.jsx'] }
+Plug 'elzr/vim-json', { 'for': ['json','ika'] }
 
 Plug 'Yggdroot/indentLine'
 
@@ -33,42 +36,36 @@ filetype plugin indent off
 
 "***** filetype ****************************************
 " set filetype {{{
-" function! s:set_filetype(...)
-"   execute 'Autocmd BufRead,BufNewFile ' . '*'.a:1 . ' set filetype=' . a:2
-" endfunction
-" command! -nargs=* SetFileType call s:set_filetype(<f-args>)
-" 
-" let s:MyFileTypes = [
-"   \   {'file' : '.md',       'type' : 'markdown'},
-"   \   {'file' : '.slim',     'type' : 'slim'},
-"   \   {'file' : '.less',     'type' : 'less'},
-"   \   {'file' : '.coffee',   'type' : 'coffee'},
-"   \   {'file' : '.scss',     'type' : 'scss'},
-"   \   {'file' : '.sass',     'type' : 'sass'},
-"   \   {'file' : '.cjsx',     'type' : 'coffee'},
-"   \   {'file' : '.exs',      'type' : 'elixir'},
-"   \   {'file' : '.ex',       'type' : 'elixir'},
-"   \   {'file' : '.toml',     'type' : 'toml'},
-"   \   {'file' : '_spec.rb',  'type' : 'rspec'},
-"   \   {'file' : '.jsx',      'type' : 'javascript.jsx'},
-"   \   {'file' : '.es6',      'type' : 'javascript'},
-"   \   {'file' : '.react.js', 'type' : 'javascript.jsx'},
-"   \   {'file' : '.fish',     'type' : 'fish'},
-"   \   {'file' : '.babelrc',  'type' : 'json'},
-"   \   {'file' : '.eslintrc', 'type' : 'yaml'},
-"   \ ]
-" 
-" for s:e in s:MyFileTypes
-"   execute 'SetFileType ' . s:e['file'] . ' ' . s:e['type']
-" endfor
-" " }}}
-au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
-au BufRead,BufNewFile,BufReadPre *.slim set filetype=slim
-" let g:indentLine_faster = 1
-" nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-" let g:indentLine_color_term = 207 "111
-" let g:indentLine_color_gui = '#708090'
-" let g:indentLine_char = '¦'
+function! s:set_filetype(...)
+  execute 'autocmd BufRead,BufNewFile ' . '*'.a:1 . ' set filetype=' . a:2
+endfunction
+command! -nargs=* SetFileType call s:set_filetype(<f-args>)
+
+let s:MyFileTypes = [
+  \   {'file' : '.md',       'type' : 'markdown'},
+  \   {'file' : '.slim',     'type' : 'slim'},
+  \   {'file' : '.less',     'type' : 'less'},
+  \   {'file' : '.coffee',   'type' : 'coffee'},
+  \   {'file' : '.scss',     'type' : 'scss'},
+  \   {'file' : '.sass',     'type' : 'sass'},
+  \   {'file' : '.cjsx',     'type' : 'coffee'},
+  \   {'file' : '.exs',      'type' : 'elixir'},
+  \   {'file' : '.ex',       'type' : 'elixir'},
+  \   {'file' : '.toml',     'type' : 'toml'},
+  \   {'file' : '_spec.rb',  'type' : 'rspec'},
+  \   {'file' : '.jsx',      'type' : 'javascript.jsx'},
+  \   {'file' : '.es6',      'type' : 'javascript'},
+  \   {'file' : '.react.js', 'type' : 'javascript.jsx'},
+  \   {'file' : '.fish',     'type' : 'fish'},
+  \   {'file' : '.babelrc',  'type' : 'json'},
+  \   {'file' : '.ika',      'type' : 'ika'},
+  \   {'file' : '.eslintrc', 'type' : 'yaml'},
+  \ ]
+
+for s:e in s:MyFileTypes
+  execute 'SetFileType ' . s:e['file'] . ' ' . s:e['type']
+endfor
+" }}}
 
 
 "***** set *********************************************
@@ -242,6 +239,17 @@ if s:plug.is_installed('vim-easy-align') "{{{
   nmap ga <Plug>(EasyAlign)
 endif
 " }}}
+
+if s:plug.is_installed('yankround.vim')
+  nmap p <Plug>(yankround-p)
+  xmap p <Plug>(yankround-p)
+  nmap P <Plug>(yankround-P)
+  nmap gp <Plug>(yankround-gp)
+  xmap gp <Plug>(yankround-gp)
+  nmap gP <Plug>(yankround-gP)
+  nmap <C-p> <Plug>(yankround-prev)
+  nmap <C-n> <Plug>(yankround-next)
+endif
 
 " カラースキーマの設定--------------------------------------------------
 
