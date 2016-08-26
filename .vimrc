@@ -222,12 +222,12 @@ if s:plug.is_installed('lightline.vim') "{{{
     \ 'colorscheme': 'default',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'fugitive': 'LightLineFugitive',
-    \ },
-    \ }
+    \             [ 'readonly', 'filename', 'modified' ] ]
+    \ },}
+    " \ 'component_function': {
+    " \   'fugitive': 'LightLineFugitive',
+    " \ },
+    " \ }
   function! LightLineFugitive()
     return exists('*fugitive#head') ? fugitive#head() : ''
   endfunction
