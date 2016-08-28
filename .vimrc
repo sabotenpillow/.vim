@@ -32,6 +32,7 @@ Plug 'osyo-manga/vim-anzu'
 Plug 'tmhedberg/matchit'
 Plug 'osyo-manga/vim-jplus'
 Plug 'osyo-manga/vim-over'
+Plug 't9md/vim-quickhl'
 
 Plug 'kana/vim-textobj-user'
 Plug 'osyo-manga/vim-textobj-multiblock'
@@ -588,6 +589,17 @@ if s:plug.is_installed('vim-jplus')
   \       "delimiter_format" : ' %d '
   \   }
   \}
+endif
+
+if s:plug.is_installed('vim-quickhl')
+  nmap <Space>m <Plug>(quickhl-manual-this)
+  xmap <Space>m <Plug>(quickhl-manual-this)
+  nmap <Space>M <Plug>(quickhl-manual-reset)
+  xmap <Space>M <Plug>(quickhl-manual-reset)
+  
+  " nmap <Space>j <Plug>(quickhl-cword-toggle)
+  nmap <Space>] <Plug>(quickhl-tag-toggle)
+  map H <Plug>(operator-quickhl-manual-this-motion)
 endif
 
 " カラースキーマの設定--------------------------------------------------
