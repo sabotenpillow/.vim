@@ -20,6 +20,7 @@ Plug 'Shougo/neocomplete.vim'
 Plug 'osyo-manga/vim-monster', { 'for': 'ruby' }
 Plug 'moll/vim-node'
 Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-abolish'
 
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
