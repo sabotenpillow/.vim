@@ -33,6 +33,7 @@ Plug 'tmhedberg/matchit'
 Plug 'osyo-manga/vim-jplus'
 Plug 'osyo-manga/vim-over'
 Plug 't9md/vim-quickhl'
+Plug 'wellle/targets.vim'
 
 Plug 'kana/vim-textobj-user'
 Plug 'osyo-manga/vim-textobj-multiblock'
