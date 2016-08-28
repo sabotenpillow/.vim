@@ -185,6 +185,7 @@ endif
 "***** normal mode ***************************************************
 " nnoremap ; ^
 " nnoremap ; :
+nnoremap Y y$
 
 " nnoremap <expr> / _(":%s/<Cursor>/&/gn")
 " function! s:move_cursor_pos_mapping(str, ...)
