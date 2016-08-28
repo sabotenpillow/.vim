@@ -27,6 +27,7 @@ Plug 'coderifous/textobj-word-column.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'osyo-manga/vim-anzu'
 
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
@@ -466,6 +467,18 @@ if s:plug.is_installed('incsearch-easymotion.vim')
     endfunction
     noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
   endif
+endif
+
+if s:plug.is_installed('incsearch-easymotion.vim')
+  " mapping
+  nmap n <Plug>(anzu-n-with-echo)
+  nmap N <Plug>(anzu-N-with-echo)
+  nmap * <Plug>(anzu-star-with-echo)
+  nmap # <Plug>(anzu-sharp-with-echo)
+  " clear status
+  nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+  " statusline
+  set statusline=%{anzu#search_status()})
 endif
 
 
