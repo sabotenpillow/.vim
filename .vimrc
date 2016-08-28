@@ -421,6 +421,14 @@ if s:plug.is_installed('incsearch.vim')
   map #  <Plug>(incsearch-nohl-#)
   map g* <Plug>(incsearch-nohl-g*)
   map g# <Plug>(incsearch-nohl-g#)
+  " see: https://github.com/haya14busa/incsearch.vim#example
+  " function! s:noregexp(pattern) abort
+  "   return '\V' . escape(a:pattern, '\')
+  " endfunction
+  " function! s:config() abort
+  "   return {'converters': [function('s:noregexp')]}
+  " endfunction
+  " noremap <silent><expr> z/ incsearch#go(<SID>config())
 endif
 
 if s:plug.is_installed('incsearch-fuzzy.vim')
