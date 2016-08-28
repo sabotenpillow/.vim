@@ -24,6 +24,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'coderifous/textobj-word-column.vim'
+Plug 'haya14busa/incsearch.vim'
 
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
@@ -403,6 +404,13 @@ if s:plug.is_installed('moll/vim-node')
     \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
     \ endif
 endif
+
+if s:plug.is_installed('incsearch.vim')
+  map /  <Plug>(incsearch-forward)
+  map ?  <Plug>(incsearch-backward)
+  map g/ <Plug>(incsearch-stay)
+endif
+
 
 " カラースキーマの設定--------------------------------------------------
 
