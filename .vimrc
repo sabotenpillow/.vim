@@ -418,6 +418,11 @@ if s:plug.is_installed('incsearch.vim')
   let g:incsearch#auto_nohlsearch = 1
   map n  <Plug>(incsearch-nohl-n)
   map N  <Plug>(incsearch-nohl-N)
+  " coexist with vim-anzu
+  if s:plug.is_installed('incsearch-easymotion.vim')
+    nmap  n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+    nmap  N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+  endif
   map *  <Plug>(incsearch-nohl-*)
   map #  <Plug>(incsearch-nohl-#)
   map g* <Plug>(incsearch-nohl-g*)
@@ -471,10 +476,10 @@ endif
 
 if s:plug.is_installed('incsearch-easymotion.vim')
   " mapping
-  nmap n <Plug>(anzu-n-with-echo)
-  nmap N <Plug>(anzu-N-with-echo)
-  nmap * <Plug>(anzu-star-with-echo)
-  nmap # <Plug>(anzu-sharp-with-echo)
+  " nmap n <Plug>(anzu-n-with-echo)
+  " nmap N <Plug>(anzu-N-with-echo)
+  " nmap * <Plug>(anzu-star-with-echo)
+  " nmap # <Plug>(anzu-sharp-with-echo)
   " clear status
   nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
   " statusline
