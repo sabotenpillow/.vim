@@ -8,6 +8,7 @@ Plug 'MaxMEllon/molokai'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'cocopon/iceberg.vim'
 
+Plug 'mhinz/vim-startify'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'tpope/vim-surround'
 Plug 'cohama/lexima.vim'
@@ -22,6 +23,7 @@ Plug 'moll/vim-node'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
+Plug 'coderifous/textobj-word-column.vim'
 
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
@@ -214,6 +216,18 @@ function! s:plug.is_installed(name)
   return has_key(self.plugs, a:name) ? isdirectory(self.plugs[a:name].dir) : 0
 endfunction
 " }}}
+
+if s:plug.is_installed('vim-startify') " {{{
+  " startifyのヘッダー部分に表示する文字列を設定する(dateコマンドを実行して日付を設定している)
+  let g:startify_custom_header =
+    \ map(split(system('date'), '\n'), '"   ". v:val') + ['','']
+  " デフォルトだと、最近使ったファイルの先頭は数字なので、使用するアルファベットを指定
+  let g:startify_custom_indices = ['f', 'g', 'h', 'r', 'i', 'o', 'b']
+  " よく使うファイルをブックマークとして登録しておく
+  let g:startify_bookmarks = [
+    \ '~/.vimrc',
+    \ ]
+endif
 
 if s:plug.is_installed('indentLine') " {{{
   let g:indentLine_faster = 1
