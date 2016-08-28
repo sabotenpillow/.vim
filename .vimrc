@@ -424,10 +424,23 @@ if s:plug.is_installed('incsearch.vim')
     nmap  n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
     nmap  N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
   endif
-  map *  <Plug>(incsearch-nohl-*)
-  map #  <Plug>(incsearch-nohl-#)
-  map g* <Plug>(incsearch-nohl-g*)
-  map g# <Plug>(incsearch-nohl-g#)
+  if s:plug.is_installed('vim-asterisk')
+    " coexist with vim-asterisk
+    map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)
+    map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)
+    map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)
+    map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)
+    map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
+    map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
+    map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
+    map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
+    let g:asterisk#keeppos = 1
+  else
+    map *  <Plug>(incsearch-nohl-*)
+    map #  <Plug>(incsearch-nohl-#)
+    map g* <Plug>(incsearch-nohl-g*)
+    map g# <Plug>(incsearch-nohl-g#)
+  endif
   " see: https://github.com/haya14busa/incsearch.vim#example
   " function! s:noregexp(pattern) abort
   "   return '\V' . escape(a:pattern, '\')
@@ -488,14 +501,14 @@ if s:plug.is_installed('vim-anzu')
 endif
 
 if s:plug.is_installed('vim-asterisk')
-  map *   <Plug>(asterisk-*)
-  map #   <Plug>(asterisk-#)
-  map g*  <Plug>(asterisk-g*)
-  map g#  <Plug>(asterisk-g#)
-  map z*  <Plug>(asterisk-z*)
-  map gz* <Plug>(asterisk-gz*)
-  map z#  <Plug>(asterisk-z#)
-  map gz# <Plug>(asterisk-gz#)
+  " map *   <Plug>(asterisk-*)
+  " map #   <Plug>(asterisk-#)
+  " map g*  <Plug>(asterisk-g*)
+  " map g#  <Plug>(asterisk-g#)
+  " map z*  <Plug>(asterisk-z*)
+  " map gz* <Plug>(asterisk-gz*)
+  " map z#  <Plug>(asterisk-z#)
+  " map gz# <Plug>(asterisk-gz#)
   let g:asterisk#keeppos = 1
 endif
 
