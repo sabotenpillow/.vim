@@ -173,7 +173,7 @@ endif
 "     noremap p :rv!<CR>p
 " endif
 
-"***** normal & command **********************************************
+"***** normal & commandline **********************************************
 "noremap <silent> <C-,> ^
 "noremap <silent> <C-.> $
 "noremap <silent> < {
@@ -192,6 +192,17 @@ endif
 " function! _(str)
 "   return s:move_cursor_pos_mapping(a:str, "\<Left>")
 " endfunction
+
+"***** commandline mode ***************************************************
+cnoremap <C-a> <Home>
+cnoremap <C-b> <Left>
+cnoremap <C-d> <Del>
+cnoremap <C-e> <End>
+cnoremap <C-f> <Right>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+cnoremap <M-b> <S-Left>
+cnoremap <M-f> <S-Right>
 
 "***** insert mode ***************************************************
 " insert
