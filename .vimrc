@@ -30,6 +30,9 @@ Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'osyo-manga/vim-anzu'
 
+Plug 'kana/vim-textobj-user'
+Plug 'osyo-manga/vim-textobj-multiblock'
+
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript.jsx'] }
