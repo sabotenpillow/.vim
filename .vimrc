@@ -424,6 +424,19 @@ if s:plug.is_installed('incsearch-easymotion.vim')
   map <leader>/  <Plug>(incsearch-easymotion-/)
   map <leader>?  <Plug>(incsearch-easymotion-?)
   map <leader>g/ <Plug>(incsearch-easymotion-stay)
+  " incsearch.vim x fuzzy x vim-easymotion
+  if s:plug.is_installed('incsearch-fuzzy.vim')
+    function! s:config_easyfuzzymotion(...) abort
+      return extend(copy({
+      \   'converters': [incsearch#config#fuzzy#converter()],
+      \   'modules': [incsearch#config#easymotion#module()],
+      \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+      \   'is_expr': 0,
+      \   'is_stay': 1
+      \ }), get(a:, 1, {}))
+    endfunction
+    noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+  endif
 endif
 
 
