@@ -20,10 +20,10 @@ Plug 'kana/vim-smartchr'
 Plug 'Shougo/neocomplete.vim'
 Plug 'osyo-manga/vim-monster', { 'for': 'ruby' }
 Plug 'moll/vim-node'
-Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'coderifous/textobj-word-column.vim'
+Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
@@ -408,6 +408,55 @@ if s:plug.is_installed('moll/vim-node')
     \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
     \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
     \ endif
+endif
+
+if s:plug.is_installed('vim-easymotion')
+  map <Leader> <Plug>(easymotion-prefix)
+  let g:EasyMotion_do_mapping = 0 " Disable default mappings
+  let g:EasyMotion_keys='jkfdnmvgurieslacxwohytbzqpJKFDNMVGURIESLACXWOHYTBZQP'
+  let g:EasyMotion_leader_key=";"
+  " 1 ストローク選択を優先
+  let g:EasyMotion_grouping=1
+  " カラー設定変更
+  hi EasyMotionTarget ctermbg=none ctermfg=red
+  hi EasyMotionShade  ctermbg=none ctermfg=blue
+  " JK motions: Line motions
+  map  <Leader>h <Plug>(easymotion-linebackward)
+  map  <Leader>j <Plug>(easymotion-j)
+  map  <Leader>k <Plug>(easymotion-k)
+  map  <Leader>l <Plug>(easymotion-lineforward)
+  nmap <Leader><Leader>l <Plug>(easymotion-lineanywhere)
+  let g:EasyMotion_startofline = 0  " keep cursor column when JK motion
+  " Move to line
+  map  <Leader>L <Plug>(easymotion-bd-jk)
+  nmap <Leader><Leader>L <Plug>(easymotion-overwin-line)
+  " <Leader>f{char}{char} to move to {char}
+  map  <Leader>f <Plug>(easymotion-bd-f2)
+  map  <Leader>F <Plug>(easymotion-F2)
+  nmap <Leader><Leader>f <Plug>(easymotion-overwin-f2)
+  map  <Leader>t <Plug>(easymotion-bd-t2)
+  map  <Leader>T <Plug>(easymotion-T2)
+  " Gif config
+  nmap <Leader>s <Plug>(easymotion-s2)
+  " Move to word
+  map  <Leader>w <Plug>(easymotion-bd-w)
+  map  <Leader>W <Plug>(easymotion-bd-W)
+  nmap <Leader><Leader>w <Plug>(easymotion-overwin-w)
+  map  <Leader>b <Plug>(easymotion-b)
+  map  <Leader>B <Plug>(easymotion-B)
+  map  <Leader>e <Plug>(easymotion-bd-e)
+  map  <Leader>E <Plug>(easymotion-bd-E)
+  map  <Leader>ge <Plug>(easymotion-ge)
+  map  <Leader>gE <Plug>(easymotion-gE)
+  " Jump to latest '/' or '?'
+  nmap <Leader>n <Plug>(easymotion-vim-n)
+  nmap <Leader>N <Plug>(easymotion-vim-N)
+  nmap <Leader>; <Plug>(easymotion-next)
+  nmap <Leader>, <Plug>(easymotion-prev)
+  " Turn on case insensitive feature
+  let g:EasyMotion_smartcase = 1
+  " nmap <Leader>a <Plug>(easymotion-iskeyword-b)
+  " nmap <Leader>c <Plug>(easymotion-n)
 endif
 
 if s:plug.is_installed('incsearch.vim')
