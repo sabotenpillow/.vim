@@ -419,7 +419,7 @@ if s:plug.is_installed('incsearch.vim')
   map n  <Plug>(incsearch-nohl-n)
   map N  <Plug>(incsearch-nohl-N)
   " coexist with vim-anzu
-  if s:plug.is_installed('incsearch-easymotion.vim')
+  if s:plug.is_installed('vim-anzu')
     nmap  n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
     nmap  N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
   endif
@@ -474,7 +474,7 @@ if s:plug.is_installed('incsearch-easymotion.vim')
   endif
 endif
 
-if s:plug.is_installed('incsearch-easymotion.vim')
+if s:plug.is_installed('vim-anzu')
   " mapping
   " nmap n <Plug>(anzu-n-with-echo)
   " nmap N <Plug>(anzu-N-with-echo)
