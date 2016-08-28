@@ -40,6 +40,7 @@ Plug 'kana/vim-textobj-function'
 Plug 'rhysd/vim-textobj-ruby', { 'for': 'ruby' }
 Plug 'machakann/vim-textobj-delimited'
 Plug 'glts/vim-textobj-indblock'
+Plug 'thinca/vim-textobj-between'
 
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
@@ -596,11 +597,17 @@ if s:plug.is_installed('vim-quickhl')
   xmap <Space>m <Plug>(quickhl-manual-this)
   nmap <Space>M <Plug>(quickhl-manual-reset)
   xmap <Space>M <Plug>(quickhl-manual-reset)
-  
   " nmap <Space>j <Plug>(quickhl-cword-toggle)
   nmap <Space>] <Plug>(quickhl-tag-toggle)
   map H <Plug>(operator-quickhl-manual-this-motion)
 endif
+
+" if s:plug.is_installed('vim-textobj-between')
+"   omap iA <Plug>(textobj-function-i)
+"   omap aA <Plug>(textobj-function-a)
+"   vmap iA <Plug>(textobj-function-i)
+"   vmap aA <Plug>(textobj-function-a)
+" endif
 
 " カラースキーマの設定--------------------------------------------------
 
