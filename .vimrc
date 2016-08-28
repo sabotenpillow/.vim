@@ -41,6 +41,10 @@ call plug#end()
 filetype off
 filetype plugin indent off
 
+
+"***** filetype ****************************************
+let mapleader = "\<Space>"
+
 "***** filetype ****************************************
 " set filetype {{{
 function! s:set_filetype(...)
