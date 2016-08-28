@@ -41,6 +41,7 @@ Plug 'rhysd/vim-textobj-ruby', { 'for': 'ruby' }
 Plug 'machakann/vim-textobj-delimited'
 Plug 'glts/vim-textobj-indblock'
 Plug 'thinca/vim-textobj-between'
+Plug 'Julian/vim-textobj-variable-segment'
 
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
