@@ -27,6 +27,7 @@ Plug 'coderifous/textobj-word-column.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'haya14busa/vim-asterisk'
 Plug 'osyo-manga/vim-anzu'
 
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
@@ -222,7 +223,7 @@ inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <DEL>
 
 "***** visual mode ***************************************************
-vnoremap * "zy:let @/ = @z<CR>n
+" vnoremap * "zy:let @/ = @z<CR>n
 
 "***** plugins ***************************************************
 let s:plug = {
@@ -484,6 +485,18 @@ if s:plug.is_installed('vim-anzu')
   nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
   " statusline
   set statusline=%{anzu#search_status()})
+endif
+
+if s:plug.is_installed('vim-asterisk')
+  map *   <Plug>(asterisk-*)
+  map #   <Plug>(asterisk-#)
+  map g*  <Plug>(asterisk-g*)
+  map g#  <Plug>(asterisk-g#)
+  map z*  <Plug>(asterisk-z*)
+  map gz* <Plug>(asterisk-gz*)
+  map z#  <Plug>(asterisk-z#)
+  map gz# <Plug>(asterisk-gz#)
+  let g:asterisk#keeppos = 1
 endif
 
 
