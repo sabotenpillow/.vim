@@ -31,6 +31,7 @@ Plug 'haya14busa/vim-asterisk'
 Plug 'osyo-manga/vim-anzu'
 Plug 'tmhedberg/matchit'
 Plug 'osyo-manga/vim-jplus'
+Plug 'osyo-manga/vim-over'
 
 Plug 'kana/vim-textobj-user'
 Plug 'osyo-manga/vim-textobj-multiblock'
