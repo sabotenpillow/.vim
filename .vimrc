@@ -26,6 +26,7 @@ Plug 'tpope/vim-repeat'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
 
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
@@ -416,6 +417,12 @@ if s:plug.is_installed('incsearch-fuzzy.vim')
   map z/  <Plug>(incsearch-fuzzy-/)
   map z?  <Plug>(incsearch-fuzzy-?)
   map zg/ <Plug>(incsearch-fuzzy-stay)
+endif
+
+if s:plug.is_installed('incsearch-easymotion.vim')
+  map <leader>/  <Plug>(incsearch-easymotion-/)
+  map <leader>?  <Plug>(incsearch-easymotion-?)
+  map <leader>g/ <Plug>(incsearch-easymotion-stay)
 endif
 
 
