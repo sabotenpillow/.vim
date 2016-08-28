@@ -30,6 +30,7 @@ Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'osyo-manga/vim-anzu'
 Plug 'tmhedberg/matchit'
+Plug 'osyo-manga/vim-jplus'
 
 Plug 'kana/vim-textobj-user'
 Plug 'osyo-manga/vim-textobj-multiblock'
@@ -569,6 +570,24 @@ if s:plug.is_installed('vim-asterisk')
   let g:asterisk#keeppos = 1
 endif
 
+if s:plug.is_installed('vim-jplus')
+  " Jの挙動を jplus.vim で行う
+  " nmap J <Plug>(jplus)
+  " vmap J <Plug>(jplus)
+  " getchar() を使用して挿入文字を入力します
+  nmap <Leader>J <Plug>(jplus-getchar)
+  vmap <Leader>J <Plug>(jplus-getchar)
+  " input() を使用したい場合はこちらを使用して下さい
+  " nmap <Leader>J <Plug>(jplus-input)
+  " vmap <Leader>J <Plug>(jplus-input)
+  " <Plug>(jplus-getchar) 時に左右に空白文字を入れたい場合
+  " %d は入力した結合文字に置き換えられる
+  let g:jplus#config = {
+  \   "_" : {
+  \       "delimiter_format" : ' %d '
+  \   }
+  \}
+endif
 
 " カラースキーマの設定--------------------------------------------------
 
