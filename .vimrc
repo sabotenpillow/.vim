@@ -33,6 +33,7 @@ Plug 'osyo-manga/vim-anzu'
 Plug 'kana/vim-textobj-user'
 Plug 'osyo-manga/vim-textobj-multiblock'
 Plug 'kana/vim-textobj-function'
+Plug 'rhysd/vim-textobj-ruby', { 'for': 'ruby' }
 
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
