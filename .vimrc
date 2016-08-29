@@ -35,6 +35,7 @@ Plug 'osyo-manga/vim-over'
 Plug 't9md/vim-quickhl'
 Plug 'wellle/targets.vim'
 Plug 'bkad/CamelCaseMotion'
+Plug 'rking/ag.vim'
 
 Plug 'kana/vim-textobj-user'
 Plug 'osyo-manga/vim-textobj-multiblock'
