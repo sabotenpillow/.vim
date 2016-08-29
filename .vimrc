@@ -261,7 +261,8 @@ if s:plug.is_installed('vim-startify') " {{{
   let g:startify_custom_header =
     \ map(split(system('date'), '\n'), '"   ". v:val') + ['','']
   " デフォルトだと、最近使ったファイルの先頭は数字なので、使用するアルファベットを指定
-  let g:startify_custom_indices = ['f', 'g', 'h', 'r', 'i', 'o', 'b']
+  " let g:startify_custom_indices = ['f', 'g', 'h', 'r', 'i', 'o', 'b']
+  let g:startify_custom_indices = ['f', 'd', 'n', 'm', 'v', 'g', 'u', 'r', 'i', 'e', 's', 'l', 'a', 'c', 'x', 'w', 'o', 'h', 'y', 't', 'b', 'z', 'p']
   " よく使うファイルをブックマークとして登録しておく
   let g:startify_bookmarks = [
     \ '~/.vimrc',
