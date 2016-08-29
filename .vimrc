@@ -46,6 +46,9 @@ Plug 'thinca/vim-textobj-between'
 Plug 'Julian/vim-textobj-variable-segment'    " similar to 'machakann/vim-textobj-delimited'
 Plug 'vimtaku/vim-textobj-sigil'
 
+Plug 'kana/vim-operator-user'
+Plug 'kana/vim-operator-replace'
+
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript.jsx'] }
@@ -629,6 +632,10 @@ if s:plug.is_installed('CamelCaseMotion')
   " xmap <silent> ib <Plug>CamelCaseMotion_ib
   " omap <silent> ie <Plug>CamelCaseMotion_ie
   " xmap <silent> ie <Plug>CamelCaseMotion_ie
+endif
+
+if s:plug.is_installed('vim-operator-replace')
+  map <Leader>r  Plug>(operator-replace)
 endif
 
 " カラースキーマの設定--------------------------------------------------
