@@ -36,6 +36,7 @@ Plug 't9md/vim-quickhl'
 Plug 'wellle/targets.vim'
 Plug 'bkad/CamelCaseMotion'
 Plug 'rking/ag.vim'
+" Plug 'terryma/vim-multiple-cursors'
 
 Plug 'kana/vim-textobj-user'
 Plug 'osyo-manga/vim-textobj-multiblock'
@@ -643,6 +644,16 @@ endif
 if s:plug.is_installed('operator-camelize.vim')
   map <Leader>c <Plug>(operator-camelize)
   map <Leader>C <Plug>(operator-decamelize)
+endif
+
+if s:plug.is_installed('vim-multiple-cursors')
+  let g:multi_cursor_next_key='<C-n>'
+  let g:multi_cursor_prev_key='<C-p>'
+  let g:multi_cursor_skip_key='<C-x>'
+  " let g:multi_cursor_start_key='<C-n>'
+  let g:multi_cursor_start_word_key='g<C-n>'
+  let g:multi_cursor_quit_key='<C-c>'
+  " nnoremap <C-c> :call_multiple_cursor#quit()<CR>
 endif
 
 " カラースキーマの設定--------------------------------------------------
