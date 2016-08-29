@@ -48,6 +48,7 @@ Plug 'vimtaku/vim-textobj-sigil'
 
 Plug 'kana/vim-operator-user'
 Plug 'kana/vim-operator-replace'
+Plug 'tyru/operator-camelize.vim'
 
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
@@ -635,7 +636,12 @@ if s:plug.is_installed('CamelCaseMotion')
 endif
 
 if s:plug.is_installed('vim-operator-replace')
-  map <Leader>r  Plug>(operator-replace)
+  map <Leader>r <Plug>(operator-replace)
+endif
+
+if s:plug.is_installed('operator-camelize.vim')
+  map <Leader>c <Plug>(operator-camelize)
+  map <Leader>C <Plug>(operator-decamelize)
 endif
 
 " カラースキーマの設定--------------------------------------------------
