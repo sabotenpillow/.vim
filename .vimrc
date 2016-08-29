@@ -10,7 +10,7 @@ Plug 'cocopon/iceberg.vim'
 
 Plug 'mhinz/vim-startify'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'    " similar to 'vim-operator-surround' and 'vim-sandwich'
 Plug 'cohama/lexima.vim'
 Plug 'osyo-manga/vim-over'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -43,7 +43,8 @@ Plug 'rhysd/vim-textobj-ruby', { 'for': 'ruby' }
 Plug 'machakann/vim-textobj-delimited'
 Plug 'glts/vim-textobj-indblock'
 Plug 'thinca/vim-textobj-between'
-Plug 'Julian/vim-textobj-variable-segment'
+Plug 'Julian/vim-textobj-variable-segment'    " similar to 'machakann/vim-textobj-delimited'
+Plug 'vimtaku/vim-textobj-sigil'
 
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
