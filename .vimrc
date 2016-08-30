@@ -61,7 +61,9 @@ Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 
-Plug 'todesking/ruby_hl_lvar.vim', { 'for': 'ruby' }
+if has('ruby')
+  Plug 'todesking/ruby_hl_lvar.vim', { 'for': 'ruby' }
+endif
 Plug 'tpope/vim-rails'
 Plug 'mattn/emmet-vim'
 
