@@ -238,13 +238,13 @@ cnoremap <M-f> <S-Right>
 " insert
 inoremap <silent> jj <ESC>
 inoremap <silent> <C-j> j
-
 " move
 inoremap <silent> <C-l> <right>
-
 " backspase & delete
 inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <DEL>
+" add a newline & move the newline
+inoremap <silent> <C-o> <ESC>o
 
 "***** visual mode ***************************************************
 " vnoremap * "zy:let @/ = @z<CR>n
