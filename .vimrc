@@ -264,7 +264,7 @@ if s:plug.is_installed('vim-startify') " {{{
     \ map(split(system('date'), '\n'), '"   ". v:val') + ['','']
   " デフォルトだと、最近使ったファイルの先頭は数字なので、使用するアルファベットを指定
   " let g:startify_custom_indices = ['f', 'g', 'h', 'r', 'i', 'o', 'b']
-  let g:startify_custom_indices = ['f', 'd', 'n', 'm', 'v', 'g', 'u', 'r', 'i', 'e', 's', 'l', 'a', 'c', 'x', 'w', 'o', 'h', 'y', 't', 'b', 'z', 'p']
+  let g:startify_custom_indices = ['f', 'd', 'n', 'm', 'v', 'g', 'u', 'r', 'i', 's', 'l', 'a', 'c', 'x', 'w', 'o', 'h', 'y', 't', 'b', 'z', 'p']
   " よく使うファイルをブックマークとして登録しておく
   let g:startify_bookmarks = [
     \ '~/.vimrc',
@@ -438,10 +438,11 @@ endif
 if s:plug.is_installed('vim-easymotion')
   map <Leader> <Plug>(easymotion-prefix)
   let g:EasyMotion_do_mapping = 0 " Disable default mappings
-  let g:EasyMotion_keys='jkfdnmvgurieslacxwohytbzqpJKFDNMVGURIESLACXWOHYTBZQP'
+  " let g:EasyMotion_keys='jkfdnmvgurieslacxwohytbzqpJKFDNMVGURIESLACXWOHYTBZQP'
+  let g:EasyMotion_keys='jkfdnmvgurieslacxwohytbzqp;,.'
   let g:EasyMotion_leader_key=";"
   " 1 ストローク選択を優先
-  let g:EasyMotion_grouping=1
+  " let g:EasyMotion_grouping=1
   " カラー設定変更
   hi EasyMotionTarget ctermbg=none ctermfg=red
   hi EasyMotionShade  ctermbg=none ctermfg=blue
@@ -612,7 +613,7 @@ if s:plug.is_installed('vim-quickhl')
   xmap <Space>M <Plug>(quickhl-manual-reset)
   " nmap <Space>j <Plug>(quickhl-cword-toggle)
   nmap <Space>] <Plug>(quickhl-tag-toggle)
-  map H <Plug>(operator-quickhl-manual-this-motion)
+  " map H <Plug>(operator-quickhl-manual-this-motion)
 endif
 
 " if s:plug.is_installed('vim-textobj-between')
