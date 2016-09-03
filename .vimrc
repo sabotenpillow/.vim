@@ -28,6 +28,7 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/vim-asterisk'
+Plug 'haya14busa/vim-operator-flashy'
 Plug 'osyo-manga/vim-anzu'
 Plug 'tmhedberg/matchit'
 Plug 'osyo-manga/vim-jplus'
@@ -37,6 +38,7 @@ Plug 'wellle/targets.vim'
 Plug 'bkad/CamelCaseMotion'
 Plug 'rking/ag.vim'
 " Plug 'terryma/vim-multiple-cursors'
+Plug 'kana/vim-niceblock'
 
 Plug 'kana/vim-textobj-user'
 Plug 'osyo-manga/vim-textobj-multiblock'
@@ -55,7 +57,8 @@ Plug 'tyru/operator-camelize.vim'
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript.jsx'] }
-Plug 'elzr/vim-json', { 'for': ['json','ika'] }
+Plug 'elzr/vim-json', { 'for': ['json', 'ika'] }
+Plug 'tmux-plugins/vim-tmux', { 'for': ['tmux', 'conf'] }
 
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
@@ -659,6 +662,12 @@ if s:plug.is_installed('vim-multiple-cursors')
   let g:multi_cursor_quit_key='<C-c>'
   " nnoremap <C-c> :call_multiple_cursor#quit()<CR>
 endif
+
+if s:plug.is_installed('vim-operator-flashy')
+  map y <Plug>(operator-flashy)
+  nmap Y <Plug>(operator-flashy)$
+endif
+
 
 " カラースキーマの設定--------------------------------------------------
 
