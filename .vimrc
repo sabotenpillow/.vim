@@ -40,6 +40,7 @@ Plug 'rking/ag.vim'
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'kana/vim-niceblock'
 Plug 'kshenoy/vim-signature'
+Plug 'kana/vim-altr'
 
 Plug 'kana/vim-textobj-user'
 Plug 'osyo-manga/vim-textobj-multiblock'
