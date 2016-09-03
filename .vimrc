@@ -668,6 +668,10 @@ if s:plug.is_installed('vim-operator-flashy')
   nmap Y <Plug>(operator-flashy)$
 endif
 
+if s:plug.is_installed('vim-niceblock')
+  xmap I <Plug>(niceblock-I)
+  xmap A <Plug>(niceblock-A)
+endif
 
 " カラースキーマの設定--------------------------------------------------
 
