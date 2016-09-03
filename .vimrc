@@ -4,9 +4,15 @@
 
 call plug#begin('~/.vim/plugged')
 
+" colorscheme
 Plug 'MaxMEllon/molokai'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'cocopon/iceberg.vim'
+
+" view
+Plug 'Yggdroot/indentLine'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
 
 Plug 'mhinz/vim-startify'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -28,7 +34,6 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/vim-asterisk'
-Plug 'haya14busa/vim-operator-flashy'
 Plug 'osyo-manga/vim-anzu'
 Plug 'tmhedberg/matchit'
 Plug 'osyo-manga/vim-jplus'
@@ -42,6 +47,7 @@ Plug 'kana/vim-niceblock'
 Plug 'kshenoy/vim-signature'
 Plug 'kana/vim-altr'
 
+" text object
 Plug 'kana/vim-textobj-user'
 Plug 'osyo-manga/vim-textobj-multiblock'
 Plug 'kana/vim-textobj-function'
@@ -52,24 +58,26 @@ Plug 'thinca/vim-textobj-between'
 Plug 'Julian/vim-textobj-variable-segment'    " similar to 'machakann/vim-textobj-delimited'
 Plug 'vimtaku/vim-textobj-sigil'
 
+" operator
 Plug 'kana/vim-operator-user'
 Plug 'kana/vim-operator-replace'
 Plug 'tyru/operator-camelize.vim'
+Plug 'haya14busa/vim-operator-flashy'
 
+" highlight
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript.jsx'] }
 Plug 'elzr/vim-json', { 'for': ['json', 'ika'] }
 Plug 'tmux-plugins/vim-tmux', { 'for': ['tmux', 'conf'] }
 
-Plug 'Yggdroot/indentLine'
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-fugitive'
-
+" ruby
 if has('ruby')
   Plug 'todesking/ruby_hl_lvar.vim', { 'for': 'ruby' }
 endif
 Plug 'tpope/vim-rails'
+
+" html
 Plug 'mattn/emmet-vim'
 
 call plug#end()
