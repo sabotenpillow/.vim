@@ -8,6 +8,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'MaxMEllon/molokai'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'cocopon/iceberg.vim'
+Plug 'cseelus/vim-colors-lucid'
+Plug 'rakr/vim-two-firewatch'
+Plug 'tyrannicaltoucan/vim-deep-space'
+Plug 'AlessandroYorba/Sierra'
+Plug 'easysid/mod8.vim'
+Plug 'cabin/cabin-colorscheme'
+Plug 'duythinht/inori'
+Plug 'stulzer/heroku-colorscheme'
+Plug 'uu59/vim-herokudoc-theme'
 
 " view
 Plug 'Yggdroot/indentLine'
@@ -690,7 +699,8 @@ endif
 " 色の設定(syntax onのあと) molokai
 set t_Co=256
 try
-  colorscheme iceberg
+  " colorscheme iceberg
+  colorscheme heroku-terminal
   " let g:molokai_original = 1
 catch
   colorscheme pablo
