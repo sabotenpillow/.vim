@@ -698,6 +698,12 @@ if s:plug.is_installed('vim-niceblock')
   xmap A <Plug>(niceblock-A)
 endif
 
+if s:plug.is_installed('vim-smartchr')
+  inoremap <buffer> <expr> , smartchr#loop(', ', ',')
+  inoremap <buffer> <expr> > smartchr#loop('>', '=>', '->')
+  inoremap <buffer> <expr> = smartchr#loop('=', ' == ')
+endif
+
 " カラースキーマの設定--------------------------------------------------
 
 " syntax on
