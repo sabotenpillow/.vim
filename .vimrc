@@ -224,6 +224,12 @@ endif
 "     noremap p :rv!<CR>p
 " endif
 
+" 前回のカーソル位置から
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
+
 "***** normal & commandline **********************************************
 "noremap <silent> <C-,> ^
 "noremap <silent> <C-.> $
