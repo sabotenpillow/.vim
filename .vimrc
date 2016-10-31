@@ -493,13 +493,13 @@ if s:plug.is_installed('vim-easymotion')
   " Gif config
   nmap <Leader>s <Plug>(easymotion-s2)
   " Move to word
-  map  <Leader>w <Plug>(easymotion-bd-w)
-  map  <Leader>W <Plug>(easymotion-bd-W)
+  map  <Leader>w <Plug>(easymotion-w)
+  map  <Leader>W <Plug>(easymotion-W)
   nmap <Leader><Leader>w <Plug>(easymotion-overwin-w)
   map  <Leader>b <Plug>(easymotion-b)
   map  <Leader>B <Plug>(easymotion-B)
-  map  <Leader>e <Plug>(easymotion-bd-e)
-  map  <Leader>E <Plug>(easymotion-bd-E)
+  map  <Leader>e <Plug>(easymotion-e)
+  map  <Leader>E <Plug>(easymotion-E)
   map  <Leader>ge <Plug>(easymotion-ge)
   map  <Leader>gE <Plug>(easymotion-gE)
   " Jump to latest '/' or '?'
