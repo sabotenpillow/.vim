@@ -261,6 +261,7 @@ cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 cnoremap <M-b> <S-Left>
 cnoremap <M-f> <S-Right>
+" cnoremap where echo expand("%:p")
 
 "***** insert mode ***************************************************
 " insert
@@ -372,7 +373,7 @@ if s:plug.is_installed('neocomplete.vim')
 
   " Plugin key-mappings.
   inoremap <expr><C-g>     neocomplete#undo_completion()
-  inoremap <expr><C-l>     neocomplete#complete_common_string()
+  inoremap <expr><C-k>     neocomplete#complete_common_string()
 
   " Recommended key-mappings.
   " <CR>: close popup and save indent.
