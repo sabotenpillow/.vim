@@ -17,6 +17,7 @@ Plug 'cabin/cabin-colorscheme'
 Plug 'duythinht/inori'
 Plug 'stulzer/heroku-colorscheme'
 Plug 'uu59/vim-herokudoc-theme'
+Plug 'jacoborus/tender.vim'
 
 " view
 Plug 'Yggdroot/indentLine'
