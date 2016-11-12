@@ -26,6 +26,8 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'mhinz/vim-startify'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Shougo/vimshell.vim'
+Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-surround'    " similar to 'vim-operator-surround' and 'vim-sandwich'
 Plug 'cohama/lexima.vim'
 Plug 'osyo-manga/vim-over'

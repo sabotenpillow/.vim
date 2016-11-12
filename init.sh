@@ -18,3 +18,9 @@ if ! [ -L $HOME/.vimrc ]; then
 else
   echo 'already created symbolic link to .vimrc'
 fi
+
+if ! [ -L $HOME/.vimshrc ]; then
+  cd && ln -s .vim/.vimshrc
+else
+  echo 'already created symbolic link to .vimshrc'
+fi
