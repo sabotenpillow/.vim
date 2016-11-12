@@ -310,6 +310,11 @@ function! s:set_vsearch()
   let @/ = '\V' . substitute(escape(@z, '/\'), '\n', '\\n', 'g')
 endfunction
 
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
+
 "***** plugins ***************************************************
 let s:plug = {
   \ "plugs": get(g:, 'plugs', {})
