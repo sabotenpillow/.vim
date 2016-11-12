@@ -17,7 +17,7 @@ Plug 'cabin/cabin-colorscheme'
 Plug 'duythinht/inori'
 Plug 'stulzer/heroku-colorscheme'
 Plug 'uu59/vim-herokudoc-theme'
-Plug 'jacoborus/tender.vim'
+Plug 'jacoborus/tender'
 
 " view
 Plug 'Yggdroot/indentLine'
@@ -241,6 +241,12 @@ augroup END
 " nnoremap ; ^
 " nnoremap ; :
 nnoremap Y y$
+nnoremap } }zz
+nnoremap { {zz
+nnoremap ]] ]]zz
+nnoremap [[ [[zz
+nnoremap x "_x
+nnoremap s "_s
 
 " nnoremap <expr> / _(":%s/<Cursor>/&/gn")
 " function! s:move_cursor_pos_mapping(str, ...)
@@ -278,6 +284,8 @@ inoremap <silent> <C-o> <ESC>o
 
 "***** visual mode ***************************************************
 " vnoremap * "zy:let @/ = @z<CR>n
+vnoremap <C-p> "zx<Up>"zP`[V`]
+vnoremap <C-n> "zx"zp`[V`]
 
 " binary
 augroup BinaryXXD
