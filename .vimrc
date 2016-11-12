@@ -287,7 +287,7 @@ inoremap <silent> <C-o> <ESC>o
 vnoremap <C-p> "zx<Up>"zP`[V`]
 vnoremap <C-n> "zx"zp`[V`]
 
-" binary
+"***** binary ********************************************************
 augroup BinaryXXD
   autocmd!
   autocmd BufReadPre  *.bin let &binary =1
@@ -297,6 +297,18 @@ augroup BinaryXXD
   autocmd BufWritePost * if &binary | silent %!xxd -g 1
   autocmd BufWritePost * set nomod | endif
 augroup END
+
+"**** カーソル下の単語を検索&置換
+" nnoremap <silent> <space>* *
+nnoremap <silent> * "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
+nmap <Space># *:%s/<C-r>///g<Left><Left>
+xnoremap <silent> * mz:call <SID>set_vsearch()<CR>:set hlsearch<CR>`z
+xnoremap # :<C-u>call <SID>set_vsearch()<CR>/<C-r>/<CR>
+xmap <space># *:%s/<C-r>///g<Left><Left>
+function! s:set_vsearch()
+  silent normal gv"zy
+  let @/ = '\V' . substitute(escape(@z, '/\'), '\n', '\\n', 'g')
+endfunction
 
 "***** plugins ***************************************************
 let s:plug = {
@@ -550,7 +562,7 @@ if s:plug.is_installed('incsearch.vim')
   endif
   if s:plug.is_installed('vim-asterisk')
     " coexist with vim-asterisk
-    map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)
+    map <space>*   <Plug>(incsearch-nohl)<Plug>(asterisk-*)
     map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)
     map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)
     map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)
@@ -560,7 +572,7 @@ if s:plug.is_installed('incsearch.vim')
     map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
     let g:asterisk#keeppos = 1
   else
-    map *  <Plug>(incsearch-nohl-*)
+    map <space>*  <Plug>(incsearch-nohl-*)
     map #  <Plug>(incsearch-nohl-#)
     map g* <Plug>(incsearch-nohl-g*)
     map g# <Plug>(incsearch-nohl-g#)
