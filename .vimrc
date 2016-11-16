@@ -18,6 +18,7 @@ Plug 'duythinht/inori'
 Plug 'stulzer/heroku-colorscheme'
 Plug 'uu59/vim-herokudoc-theme'
 Plug 'jacoborus/tender'
+Plug 'cocopon/lightline-hybrid.vim'
 
 " view
 Plug 'Yggdroot/indentLine'
@@ -154,7 +155,8 @@ set number
 set relativenumber
 " 不可視文字
 set list
-set listchars=eol:¬,tab:»\ ,trail:_,extends:<
+" set listchars=eol:¬,tab:»\ ,trail:_,extends:<
+set listchars=eol:¬,tab:\ ,trail:_,extends:<
 " 現在行
 set ruler
 " ペアマッチに <> を追加
@@ -361,6 +363,7 @@ if s:plug.is_installed('lightline.vim') "{{{
     " \ 'component_function': {
     " \   'fugitive': 'LightLineFugitive',
     " \ },}
+  let g:lightline.colorscheme = 'hybrid'
   function! LightLineFugitive()
     return exists('*fugitive#head') ? fugitive#head() : ''
   endfunction
