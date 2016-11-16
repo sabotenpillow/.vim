@@ -271,6 +271,7 @@ cnoremap <C-p> <Up>
 cnoremap <M-b> <S-Left>
 cnoremap <M-f> <S-Right>
 " cnoremap where echo expand("%:p")
+cnoremap bb ls<CR>:buf 
 
 "***** insert mode ***************************************************
 " insert
