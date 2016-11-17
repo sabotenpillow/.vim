@@ -29,6 +29,7 @@ Plug 'mhinz/vim-startify'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'Shougo/vimshell.vim'
 Plug 'Shougo/unite.vim'
+Plug 'rhysd/accelerated-jk'
 Plug 'tpope/vim-surround'    " similar to 'vim-operator-surround' and 'vim-sandwich'
 Plug 'cohama/lexima.vim'
 Plug 'osyo-manga/vim-over'
@@ -747,6 +748,11 @@ if s:plug.is_installed('vim-smartchr')
   inoremap <buffer> <expr> > smartchr#loop('>', '=>', '->')
   inoremap <buffer> <expr> = smartchr#loop('=', ' == ')
 endif
+
+" let g:accelerated_jk_acceleration_limit = 100000
+" let g:accelerated_jk_enable_deceleration = 1
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
 
 " カラースキーマの設定--------------------------------------------------
 
