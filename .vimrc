@@ -28,6 +28,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-startify'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'Shougo/vimshell.vim'
+Plug 'ekalinin/Dockerfile.vim'
 Plug 'Shougo/unite.vim'
 Plug 'rhysd/accelerated-jk'
 Plug 'tpope/vim-surround'    " similar to 'vim-operator-surround' and 'vim-sandwich'
