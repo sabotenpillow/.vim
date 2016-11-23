@@ -282,10 +282,18 @@ cnoremap bb ls<CR>:buf
 inoremap <silent> jj <ESC>
 inoremap <silent> <C-j> j
 " move
-inoremap <silent> <C-l> <right>
+inoremap <C-a> <Home>
+inoremap <C-b> <Left>
+inoremap <C-e> <End>
+inoremap <C-f> <Right>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+inoremap <M-b> <S-Left>
+inoremap <M-f> <S-Right>
 " backspase & delete
 inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <DEL>
+inoremap <silent> <C-k> <C-\><C-o>D
 " add a newline & move the newline
 inoremap <silent> <C-o> <ESC>o
 
