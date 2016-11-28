@@ -272,8 +272,10 @@ cnoremap <C-e> <End>
 cnoremap <C-f> <Right>
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
-cnoremap <M-b> <S-Left>
-cnoremap <M-f> <S-Right>
+" cnoremap <M-b> <S-Left>
+" cnoremap <M-f> <S-Right>
+cnoremap <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
+" cnoremap d <C-\><C-o>dw
 " cnoremap where echo expand("%:p")
 cnoremap bb ls<CR>:buf 
 
@@ -286,14 +288,16 @@ inoremap <C-a> <Home>
 inoremap <C-b> <Left>
 inoremap <C-e> <End>
 inoremap <C-f> <Right>
-inoremap <C-n> <Down>
-inoremap <C-p> <Up>
-inoremap <M-b> <S-Left>
-inoremap <M-f> <S-Right>
+" inoremap <C-n> <Down>    \" 補完と被る
+" inoremap <C-p> <Up>
+inoremap b <S-Left>
+inoremap f <S-Right>
 " backspase & delete
 inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <DEL>
 inoremap <silent> <C-k> <C-\><C-o>D
+" inoremap <expr> <C-k> "\<C-g>u".(col('.') == col('$') ? '<C-o>gJ' : '<C-o>D')
+inoremap d <C-\><C-o>dw
 " add a newline & move the newline
 inoremap <silent> <C-o> <ESC>o
 
@@ -426,7 +430,7 @@ if s:plug.is_installed('neocomplete.vim')
 
   " Plugin key-mappings.
   inoremap <expr><C-g>     neocomplete#undo_completion()
-  inoremap <expr><C-k>     neocomplete#complete_common_string()
+  inoremap <expr><C-s>     neocomplete#complete_common_string()
 
   " Recommended key-mappings.
   " <CR>: close popup and save indent.
