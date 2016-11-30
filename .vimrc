@@ -299,7 +299,7 @@ inoremap <silent> <C-k> <C-\><C-o>D
 " inoremap <expr> <C-k> "\<C-g>u".(col('.') == col('$') ? '<C-o>gJ' : '<C-o>D')
 inoremap d <C-\><C-o>dw
 " add a newline & move the newline
-inoremap <silent> <C-o> <ESC>o
+inoremap <silent> <C-o> <End><CR>
 
 "***** visual mode ***************************************************
 " vnoremap * "zy:let @/ = @z<CR>n
