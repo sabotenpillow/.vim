@@ -17,7 +17,8 @@ Plug 'cabin/cabin-colorscheme'
 Plug 'duythinht/inori'
 Plug 'stulzer/heroku-colorscheme'
 Plug 'uu59/vim-herokudoc-theme'
-Plug 'jacoborus/tender'
+" Plug 'jacoborus/tender'
+Plug 'nobarudo/tender.vim'
 Plug 'cocopon/lightline-hybrid.vim'
 
 " view
