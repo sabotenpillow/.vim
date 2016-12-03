@@ -778,7 +778,7 @@ endif
 set t_Co=256
 try
   " colorscheme iceberg
-  colorscheme heroku-terminal
+  colorscheme iceberg
   set termguicolors
   " let g:molokai_original = 1
 catch
