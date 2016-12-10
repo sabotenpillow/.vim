@@ -354,6 +354,15 @@ if s:plug.is_installed('vim-startify') " {{{
   " よく使うファイルをブックマークとして登録しておく
   let g:startify_bookmarks = [
     \ '~/.vimrc',
+    \ '~/.zshrc',
+    \ '~/.zshenv',
+    \ '~/.zsh_history',
+    \ '~/.dotfiles/zsh/alias.zsh',
+    \ '~/.dotfiles/zsh/keybind.zsh',
+    \ '~/.dotfiles/zsh/env_vars.zsh',
+    \ '~/.dotfiles/zsh',
+    \ '~/.dotfiles/tmux/.tmux.conf',
+    \ '~/.dotfiles/tig',
     \ ]
 endif
 
