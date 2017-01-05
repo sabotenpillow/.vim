@@ -784,7 +784,11 @@ endif
 " syntax on
 
 " 色の設定(syntax onのあと) molokai
-set termguicolors
+try
+  set termguicolors
+catch
+  " do nothing
+endtry
 set t_Co=256
 try
   " colorscheme heroku-terminal
