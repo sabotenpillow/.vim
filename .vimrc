@@ -254,6 +254,7 @@ nnoremap ]] ]]zz
 nnoremap [[ [[zz
 nnoremap x "_x
 nnoremap s "_s
+nnoremap <silent> い i
 
 " nnoremap <expr> / _(":%s/<Cursor>/&/gn")
 " function! s:move_cursor_pos_mapping(str, ...)
