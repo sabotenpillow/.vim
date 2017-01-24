@@ -254,6 +254,7 @@ nnoremap ]] ]]zz
 nnoremap [[ [[zz
 nnoremap x "_x
 nnoremap s "_s
+nnoremap <Leader>r r
 
 " nnoremap <expr> / _(":%s/<Cursor>/&/gn")
 " function! s:move_cursor_pos_mapping(str, ...)
@@ -738,7 +739,7 @@ if s:plug.is_installed('CamelCaseMotion')
 endif
 
 if s:plug.is_installed('vim-operator-replace')
-  map <Leader>r <Plug>(operator-replace)
+  map r <Plug>(operator-replace)
 endif
 
 if s:plug.is_installed('operator-camelize.vim')
