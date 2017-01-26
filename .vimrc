@@ -244,6 +244,9 @@ augroup END
 "noremap <silent> < {
 "noremap <silent> > }
 
+"***** normal & visual ***********************************************
+noremap <Leader>r r
+
 "***** normal mode ***************************************************
 " nnoremap ; ^
 " nnoremap ; :
@@ -254,7 +257,6 @@ nnoremap ]] ]]zz
 nnoremap [[ [[zz
 nnoremap x "_x
 nnoremap s "_s
-nnoremap <Leader>r r
 nnoremap <silent> い i
 
 " nnoremap <expr> / _(":%s/<Cursor>/&/gn")
