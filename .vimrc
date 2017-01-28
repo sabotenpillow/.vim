@@ -246,9 +246,9 @@ augroup END
 
 "***** normal & visual ***********************************************
 noremap <Leader>r r
-noremap ,d "_d   " use no regiseter
-noremap ,c "_c   " use no regiseter
-noremap x "_x    " use no regiseter
+noremap ,d "_d
+noremap ,c "_c
+noremap x "_x
 
 "***** normal mode ***************************************************
 " nnoremap ; ^
@@ -258,13 +258,13 @@ nnoremap } }zz
 nnoremap { {zz
 nnoremap ]] ]]zz
 nnoremap [[ [[zz
-nnoremap x "_x   " use no regiseter
-nnoremap X "_X   " use no regiseter
-nnoremap ,x x    " use register
-nnoremap ,X X    " use register
-nnoremap s "_s   " use no regiseter
-nnoremap ,p "0p  " paste from yank register
-nnoremap ,P "0P  " paste from yank register
+nnoremap x "_x
+nnoremap X "_X
+nnoremap ,x x
+nnoremap ,X X
+nnoremap s "_s
+nnoremap ,p "0p
+nnoremap ,P "0P
 nnoremap <silent> い i
 
 " nnoremap <expr> / _(":%s/<Cursor>/&/gn")
