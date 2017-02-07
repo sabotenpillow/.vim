@@ -131,6 +131,7 @@ let s:MyFileTypes = [
   \   {'file' : '.babelrc',  'type' : 'json'},
   \   {'file' : '.ika',      'type' : 'ika'},
   \   {'file' : '.eslintrc', 'type' : 'yaml'},
+  \   {'file' : '.fish',     'type' : 'sh'},
   \ ]
 
 for s:e in s:MyFileTypes
@@ -801,7 +802,7 @@ try
 catch
   " do nothing
 endtry
-set t_Co=256
+" set t_Co=256
 try
   " colorscheme heroku-terminal
   colorscheme iceberg
