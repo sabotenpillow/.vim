@@ -131,7 +131,7 @@ let s:MyFileTypes = [
   \   {'file' : '.babelrc',  'type' : 'json'},
   \   {'file' : '.ika',      'type' : 'ika'},
   \   {'file' : '.eslintrc', 'type' : 'yaml'},
-  \   {'file' : '.fish',     'type' : 'sh'},
+  \   {'file' : '.fish',     'type' : 'zsh'},
   \ ]
 
 for s:e in s:MyFileTypes
