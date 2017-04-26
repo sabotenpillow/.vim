@@ -137,6 +137,7 @@ let s:MyFileTypes = [
   \   {'file' : '.eslintrc', 'type' : 'yaml'},
   \   {'file' : '.fish',     'type' : 'zsh'},
   \ ]
+  " \   {'file' : '.tex',      'type' : 'tex'},
 
 for s:e in s:MyFileTypes
   execute 'SetFileType ' . s:e['file'] . ' ' . s:e['type']
@@ -507,13 +508,13 @@ endif
 if s:plug.is_installed('neosnippet')
   " Plugin key-mappings.
   " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k>     <Plug>(neosnippet_expand_target)
+  imap <C-l>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-l>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-l>     <Plug>(neosnippet_expand_target)
   
   " SuperTab like snippets behavior.
   " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  imap <C-l>     <Plug>(neosnippet_expand_or_jump)
   "imap <expr><TAB>
   " \ pumvisible() ? "\<C-n>" :
   " \ neosnippet#expandable_or_jumpable() ?
