@@ -24,7 +24,7 @@ Plug 'nobarudo/tender.vim'
 Plug 'cocopon/lightline-hybrid.vim'
 
 " view
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 
@@ -42,8 +42,10 @@ Plug 'junegunn/vim-easy-align'
 Plug 'LeafCage/yankround.vim'
 Plug 'kana/vim-smartchr'
 Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
+" Plug 'Shougo/neosnippet'
+" Plug 'Shougo/neosnippet-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'osyo-manga/vim-monster', { 'for': 'ruby' }
 Plug 'moll/vim-node'
 Plug 'tpope/vim-abolish'
@@ -531,6 +533,22 @@ if s:plug.is_installed('neosnippet')
   let g:neosnippet#snippets_directory='~/.vim/after/snippets/'
 end
 
+if s:plug.is_installed('ultisnips')
+  " Trigger configuration.
+  " Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+  let g:UltiSnipsExpandTrigger='<c-l>'
+  let g:UltiSnipsJumpForwardTrigger='<c-l>'
+  let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+
+  " If you want :UltiSnipsEdit to split your window.
+  let g:UltiSnipsEditSplit='vertical'
+
+  " g:UltiSnipsSnippetsDir=$HOME.'after/snippets'
+  " g:UltiSnipsSnippetsDir=['.vim/after/snippets/']
+  g:UltiSnipsSnippetsDir='UltiSnips'
+  " g:UltiSnipsSnippetDirectories = ['.vim/after/snippets/']
+  " g:UltiSnipsSnippetDirectories=$HOME.'/.vim/UltiSnips'
+end
 
 if s:plug.is_installed('vim-monster')
   " Use neocomplete.vim
