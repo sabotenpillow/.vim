@@ -24,7 +24,10 @@ Plug 'nobarudo/tender.vim'
 Plug 'cocopon/lightline-hybrid.vim'
 
 " view
-" Plug 'Yggdroot/indentLine'
+" if &filetype != 'tex'
+if expand('%:e') != 'tex'
+  Plug 'Yggdroot/indentLine'
+endif
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 
