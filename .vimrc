@@ -539,15 +539,13 @@ if s:plug.is_installed('ultisnips')
   let g:UltiSnipsExpandTrigger='<c-l>'
   let g:UltiSnipsJumpForwardTrigger='<c-l>'
   let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+  " let g:UltiSnipsListSnippets='<c-tab>'
 
   " If you want :UltiSnipsEdit to split your window.
   let g:UltiSnipsEditSplit='vertical'
 
-  " g:UltiSnipsSnippetsDir=$HOME.'after/snippets'
-  " g:UltiSnipsSnippetsDir=['.vim/after/snippets/']
-  g:UltiSnipsSnippetsDir='UltiSnips'
-  " g:UltiSnipsSnippetDirectories = ['.vim/after/snippets/']
-  " g:UltiSnipsSnippetDirectories=$HOME.'/.vim/UltiSnips'
+  let g:UltiSnipsSnippetsDir = ['~/.vim/UltiSnips']
+  " let g:UltiSnipsSnippetDirectories = ['~/.vim/after/snippets/']
 end
 
 if s:plug.is_installed('vim-monster')

@@ -1,0 +1,222 @@
+
+snippet be "begin end" b
+\begin{${1:TARGET}}
+  ${2:contens}
+\end{$1}
+endsnippet
+
+snippet eq "eqnarray" b
+\begin{eqnarray}
+  ${1:TARGET}
+\end{eqnarray}
+endsnippet
+
+snippet eq* "eqnarray*" b
+\begin{eqnarray*}
+  ${1:TARGET}
+\end{eqnarray*}
+endsnippet
+
+snippet eqa "equation" b
+\begin{equation}
+  ${1:TARGET}
+\end{equation}
+endsnippet
+
+snippet eqa* "equation*" b
+\begin{equation*}
+  ${1:TARGET}
+\end{equation*}
+endsnippet
+
+snippet non "nonumber" i
+\nonumber
+endsnippet
+
+snippet setc "setcounter{equation}" b
+\setcounter{equation}{${1:0}}
+endsnippet
+
+snippet = "& = &" w
+& = & 
+endsnippet
+
+snippet _ "_{}" w
+$1_{${2}}
+endsnippet
+
+snippet ^ "^{}" w
+$1^{${2}}
+endsnippet
+
+# alias   \begin{array} \array
+snippet "arr(ay)?" "array" br
+\begin{array}{${1}}
+  ${2:TARGET}
+\end{array}
+endsnippet
+
+# alias   \begin{cases} \cases
+snippet cases "cases" b
+\begin{cases}{${1}}
+  ${2:TARGET}
+\end{cases}
+endsnippet
+
+# snippet mat "matrix" b
+# \begin{matrix}
+#   ${1:TARGET}
+# \end{matrix}
+# endsnippet
+
+snippet mat "Smart Matrix"
+\begin{${1:(p/b/v/V/B/small)}matrix}
+  $2
+\end{$1matrix}
+endsnippet
+
+# snippet bmat "bmatrix" b
+# \begin{bmatrix}
+#   ${1:TARGET}
+# \end{bmatrix}
+# endsnippet
+
+# snippet pmat "pmatrix" b
+# \begin{pmatrix}
+#   ${1:TARGET}
+# \end{pmatrix}
+# endsnippet
+
+# snippet vmat "vmatrix" b
+# \begin{vmatrix}
+#   ${1:TARGET}
+# \end{vmatrix}
+# endsnippet
+
+# snippet Bmat "Bmatrix" b
+# \begin{Bmatrix}
+#   ${1:TARGET}
+# \end{Bmatrix}
+# endsnippet
+
+# snippet Vmat "Vmatrix" b
+# \begin{Vmatrix}
+#   ${1:TARGET}
+# \end{Vmatrix}
+# endsnippet
+
+snippet smat "small matrix" b
+\begin{smallmatrix}
+  ${1:TARGET}
+\end{smallmatrix}
+endsnippet
+
+# alias   frac \frac{
+snippet frac "frac" w
+\frac{${1}}{${2}}${0}
+endsnippet
+
+# alias   lf( lfb leftb
+snippet "(leftb)|(lfb)" "\left()" wr
+\left( ${1:#:body} \right)${0}
+endsnippet
+
+# alias   lf{ lfB leftB
+snippet "(leftB)|lfB" "\left{}" wr
+\left\{ ${1:#:body} \right\}${0}
+endsnippet
+
+# alias   lf[ lf left
+snippet "(left)|(lf)" "\left[]" wr
+\left[ ${1:#:body} \right]${0}
+endsnippet
+
+# alias   \vec
+snippet "vec(tor)?" "vector" wr
+\vec{${1}}${0}
+endsnippet
+
+# alias   overrightarrow \overrightarrow
+snippet rarrow "overrightarrow" w
+\overrightarrow{${1}}${0}
+endsnippet
+
+# alias   \hat
+snippet hat "hat" w
+\hat{${1}}${0}
+endsnippet
+
+# alias   \dot
+snippet dot "dot" w
+\dot{${1}}${0}
+endsnippet
+
+# alias   \bm
+snippet bm "bm" w
+\bm{${1}}${0}
+endsnippet
+
+# alias   \pmb
+snippet pmb "pmb" w
+\pmb{${1}}${0}
+endsnippet
+
+snippet $$ "$$ $$" b
+$$
+  ${1}
+$$
+endsnippet
+
+# alias   displaymath \dispmath \displaymath
+snippet "disp(math)?" "\displaymath" br
+\begin{displaymath}
+  ${1:TARGET}
+\end{displaymath}
+endsnippet
+
+snippet al "alpha" w
+\alpha
+endsnippet
+snippet gam "gamma" w
+\gamma
+endsnippet
+snippet Gam "Gamma" w
+\Gamma
+endsnippet
+snippet del "delta" w
+\delta
+endsnippet
+snippet Del "Delta" w
+\Delta
+endsnippet
+snippet eps "epsilon" w
+\epsilon
+endsnippet
+snippet Eps "Epsilon" w
+\Epsilon
+endsnippet
+snippet the "theta" w
+\theta
+endsnippet
+snippet The "Theta" w
+\Theta
+endsnippet
+snippet lam "lambda" w
+\lambda
+endsnippet
+snippet Lam "Lambda" w
+\Lambda
+endsnippet
+snippet lam "lambda" w
+\lambda
+endsnippet
+snippet sig "sigma" w
+\sigma
+endsnippet
+snippet vsig "varsigma" w
+\varsigma
+endsnippet
+snippet Sig "Sigma" w
+\Sigma
+endsnippet
+
