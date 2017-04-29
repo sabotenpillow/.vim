@@ -1,0 +1,19 @@
+snippet "f(ile)?name" "file name" wr
+`!p snip.rv = fn`
+endsnippet
+# `expand("%")`
+# `!p snip.rv = snip.fn`
+
+snippet "f(ile)?path" "file path" wr
+`!p snip.rv = path`
+endsnippet
+# `substitute(expand("%:p"), '\', '/', "g")`
+
+snippet "f(ile)?type" "file type" wr
+`!p snip.rv = snip.ft`
+endsnippet
+
+snippet "b(ase)?name" "basename" wr
+`!p snip.rv = snip.basename`
+endsnippet
+
