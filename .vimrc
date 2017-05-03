@@ -855,8 +855,8 @@ catch
 endtry
 " set t_Co=256
 try
-  " colorscheme heroku-terminal
-  colorscheme iceberg
+  colorscheme heroku-terminal
+  " colorscheme iceberg
   " let g:molokai_original = 1
 catch
   colorscheme pablo
