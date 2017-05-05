@@ -90,11 +90,12 @@ Plug 'tyru/operator-camelize.vim'
 Plug 'haya14busa/vim-operator-flashy'
 
 " highlight
-Plug 'slim-template/vim-slim',   { 'for': 'slim' }
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
-Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript.jsx'] }
-Plug 'elzr/vim-json',            { 'for': ['json', 'ika'] }
-Plug 'tmux-plugins/vim-tmux',    { 'for': ['tmux', 'conf'] }
+Plug 'slim-template/vim-slim',           { 'for': 'slim' }
+Plug 'kchmck/vim-coffee-script',         { 'for': 'coffee' }
+Plug 'maxmellon/vim-jsx-pretty',         { 'for': ['javascript.jsx'] }
+Plug 'elzr/vim-json',                    { 'for': ['json', 'ika'] }
+Plug 'tmux-plugins/vim-tmux',            { 'for': ['tmux', 'conf'] }
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 
 " ruby
 if has('ruby')
