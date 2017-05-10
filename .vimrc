@@ -141,8 +141,8 @@ let s:MyFileTypes = [
   \   {'file' : '.ika',      'type' : 'ika'},
   \   {'file' : '.eslintrc', 'type' : 'yaml'},
   \   {'file' : '.fish',     'type' : 'zsh'},
+  \   {'file' : '.tex',      'type' : 'tex'},
   \ ]
-  " \   {'file' : '.tex',      'type' : 'tex'},
 
 for s:e in s:MyFileTypes
   execute 'SetFileType ' . s:e['file'] . ' ' . s:e['type']
