@@ -8,19 +8,20 @@ call plug#begin('~/.vim/plugged')
 
 " colorscheme
 Plug 'MaxMEllon/molokai'
-Plug 'jonathanfilip/vim-lucius'
+" Plug 'jonathanfilip/vim-lucius'
 Plug 'cocopon/iceberg.vim'
-Plug 'cseelus/vim-colors-lucid'
-Plug 'rakr/vim-two-firewatch'
-Plug 'tyrannicaltoucan/vim-deep-space'
-Plug 'AlessandroYorba/Sierra'
-Plug 'easysid/mod8.vim'
-Plug 'cabin/cabin-colorscheme'
-Plug 'duythinht/inori'
+" Plug 'cseelus/vim-colors-lucid'
+" Plug 'rakr/vim-two-firewatch'
+" Plug 'tyrannicaltoucan/vim-deep-space'
+" Plug 'AlessandroYorba/Sierra'
+" Plug 'easysid/mod8.vim'
+" Plug 'cabin/cabin-colorscheme'
+" Plug 'duythinht/inori'
 Plug 'stulzer/heroku-colorscheme'
-Plug 'uu59/vim-herokudoc-theme'
+" Plug 'uu59/vim-herokudoc-theme'
 " Plug 'jacoborus/tender'
 Plug 'nobarudo/tender.vim'
+Plug 'itchyny/landscape.vim'
 Plug 'cocopon/lightline-hybrid.vim'
 
 " view
@@ -142,8 +143,8 @@ let s:MyFileTypes = [
   \   {'file' : '.ika',      'type' : 'ika'},
   \   {'file' : '.eslintrc', 'type' : 'yaml'},
   \   {'file' : '.fish',     'type' : 'zsh'},
+  \   {'file' : '.tex',      'type' : 'tex'},
   \ ]
-  " \   {'file' : '.tex',      'type' : 'tex'},
 
 for s:e in s:MyFileTypes
   execute 'SetFileType ' . s:e['file'] . ' ' . s:e['type']
@@ -856,8 +857,9 @@ catch
 endtry
 " set t_Co=256
 try
-  colorscheme heroku-terminal
+  " colorscheme heroku-terminal
   " colorscheme iceberg
+  colorscheme landscape
   " let g:molokai_original = 1
 catch
   colorscheme pablo
