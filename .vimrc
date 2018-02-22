@@ -834,8 +834,8 @@ endif
 
 if s:plug.is_installed('vim-smartchr')
   inoremap <buffer> <expr> , smartchr#loop(', ', ',')
-  inoremap <buffer> <expr> > smartchr#loop('>', '=>', '->')
-  inoremap <buffer> <expr> = smartchr#loop('=', ' == ')
+  inoremap <buffer> <expr> > smartchr#loop('>', '>>', '=>', '->')
+  inoremap <buffer> <expr> = smartchr#loop('=', ' == ', '===')
 endif
 
 " let g:accelerated_jk_acceleration_limit = 100000
