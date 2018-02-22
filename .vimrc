@@ -48,7 +48,7 @@ Plug 'kana/vim-smartchr'
 Plug 'Shougo/neocomplete.vim'
 " Plug 'Shougo/neosnippet'
 " Plug 'Shougo/neosnippet-snippets'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'osyo-manga/vim-monster', { 'for': 'ruby' }
 Plug 'moll/vim-node'
