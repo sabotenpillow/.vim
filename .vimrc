@@ -211,10 +211,8 @@ set incsearch
 set hlsearch
 " show inputing command
 set showcmd
-" 
 set whichwrap=b,s,h,l,<,>,[,]
 " set nowrapscan
-" 
 set backspace=indent,eol,start
 " indent
 if expand('%:e') != 'go'
@@ -849,13 +847,11 @@ endif
 
 " syntax on
 
-" 色の設定(syntax onのあと) molokai
-try
+if has('+termguicolors')
   set termguicolors
-catch
-  " do nothing
-endtry
-" set t_Co=256
+endif
+
+set t_Co=256
 try
   " colorscheme heroku-terminal
   " colorscheme iceberg
