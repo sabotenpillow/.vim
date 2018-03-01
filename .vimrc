@@ -420,8 +420,8 @@ endif
 
 if s:plug.is_installed('vim-easy-align') "{{{
   vnoremap <Enter> :EasyAlign<CR>
-  xmap ga <Plug>(EasyAlign)
-  nmap ga <Plug>(EasyAlign)
+  xmap ,ga <Plug>(EasyAlign)
+  nmap ,ga <Plug>(EasyAlign)
 endif
 " }}}
 
