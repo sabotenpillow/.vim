@@ -97,6 +97,7 @@ Plug 'maxmellon/vim-jsx-pretty',         { 'for': ['javascript.jsx'] }
 Plug 'elzr/vim-json',                    { 'for': ['json', 'ika'] }
 Plug 'tmux-plugins/vim-tmux',            { 'for': ['tmux', 'conf'] }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
+Plug 'derekwyatt/vim-scala',             { 'for': 'scala' }
 
 " ruby
 if has('ruby')
@@ -144,6 +145,7 @@ let s:MyFileTypes = [
   \   {'file' : '.eslintrc', 'type' : 'yaml'},
   \   {'file' : '.fish',     'type' : 'zsh'},
   \   {'file' : '.tex',      'type' : 'tex'},
+  \   {'file' : '.scala',    'type' : 'scala'},
   \ ]
 
 for s:e in s:MyFileTypes
