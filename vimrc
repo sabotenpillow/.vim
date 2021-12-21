@@ -90,7 +90,7 @@ Plug 'kana/vim-operator-replace'
 Plug 'tyru/operator-camelize.vim'
 Plug 'haya14busa/vim-operator-flashy'
 
-" highlight
+" syntax highlight
 Plug 'slim-template/vim-slim',           { 'for': 'slim' }
 Plug 'kchmck/vim-coffee-script',         { 'for': 'coffee' }
 Plug 'maxmellon/vim-jsx-pretty',         { 'for': ['javascript.jsx'] }
@@ -98,6 +98,7 @@ Plug 'elzr/vim-json',                    { 'for': ['json', 'ika'] }
 Plug 'tmux-plugins/vim-tmux',            { 'for': ['tmux', 'conf'] }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 Plug 'derekwyatt/vim-scala',             { 'for': 'scala' }
+Plug 'elixir-editors/vim-elixir',           { 'for': 'elixir' }
 
 " ruby
 if has('ruby')
