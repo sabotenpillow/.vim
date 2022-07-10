@@ -1,3 +1,6 @@
+if has('nvim')
+  set runtimepath+=~/.vim
+endif
 command! -nargs=+ -bar Source call mine#source#Call(<args>)
 Source 'common'
 

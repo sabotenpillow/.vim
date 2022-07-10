@@ -3,7 +3,8 @@ bundle/
 dein/
 tags.lock
 
-autoload/
+autoload/*
+!autoload/mine/
 plugged/
 
 undo/
