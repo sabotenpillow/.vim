@@ -1,7 +1,10 @@
 if has('nvim')
-  set runtimepath+=~/.vim
+  echo 'you use nvim'
+  command! -nargs=1 -bar Source call luaeval('require("mine.source").exec(_A)', expand(<args>))
+else
+  command! -nargs=1 -bar Source call mine#source#Call(<args>)
 endif
-command! -nargs=+ -bar Source call mine#source#Call(<args>)
+
 Source 'common'
 
 if exists('g:vscode')

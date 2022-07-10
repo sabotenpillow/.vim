@@ -14,6 +14,16 @@ else
   echo 'undo directory is already existed'
 fi
 
+## nvim's config dir
+NVIM_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+if ! [ -L $NVIM_CONFIG_DIR ]; then
+  mkdir -p `dirname $NVIM_CONFIG_DIR` \
+  && ln -s $VIM_DIR/nvim/config $NVIM_CONFIG_DIR \
+  && echo "linked '$NVIM_CONFIG_DIR' to '$VIM_DIR/nvim/config' !!!!!"
+else
+  echo "already linked '$NVIM_CONFIG_DIR' to '$VIM_DIR/nvim/config'."
+fi
+
 ## nvim's data dir
 NVIM_DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site
 if ! [ -L $NVIM_DATA_DIR ]; then

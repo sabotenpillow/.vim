@@ -5,8 +5,12 @@ tags.lock
 
 autoload/*
 !autoload/mine/
+nvim/data/autoload/*
+!nvim/data/autoload/mine
 plugged/
 
 undo/
 
 .viminfo
+
+*.bak
