@@ -1,7 +1,7 @@
-local source = require('mine.source')
+local rc = require('mine.rc')
 
-source.exec('common')
-source.exec('neovim')
+rc.source('common')
+rc.source('neovim')
 if vim.fn.exists('g:vscode') == 1 then
-  source.exec('vscode')
+  rc.source('vscode')
 end

@@ -1,8 +1,7 @@
 if has('nvim')
-  echo 'you use nvim'
-  command! -nargs=1 -bar Source call luaeval('require("mine.source").exec(_A)', expand(<args>))
+  command! -nargs=1 -bar Source call luaeval('require("mine.rc").source(_A)', expand(<args>))
 else
-  command! -nargs=1 -bar Source call mine#source#Call(<args>)
+  command! -nargs=1 -bar Source call mine#rc#Source(<args>)
 endif
 
 Source 'common'

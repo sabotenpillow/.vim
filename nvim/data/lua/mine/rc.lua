@@ -1,6 +1,6 @@
-local module = {}
+local rc = {}
 
-function module.exec(path)
+function rc.source(path)
   local filepath = vim.fn.expand('~/.vim/vimrc.d/') .. path .. '.vim'
   if vim.fn.filereadable(filepath) == 1 then
     vim.fn.execute('source ' .. filepath)
@@ -9,4 +9,4 @@ function module.exec(path)
   return false
 end
 
-return module
+return rc

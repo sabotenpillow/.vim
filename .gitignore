@@ -6,7 +6,8 @@ tags.lock
 autoload/*
 !autoload/mine/
 nvim/data/autoload/*
-!nvim/data/autoload/mine
+!nvim/data/autoload/plug.vim
+!nvim/data/autoload/mine/
 plugged/
 
 undo/
