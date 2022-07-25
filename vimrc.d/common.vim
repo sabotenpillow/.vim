@@ -98,7 +98,7 @@ Plug 'elzr/vim-json',                    { 'for': ['json', 'ika'] }
 Plug 'tmux-plugins/vim-tmux',            { 'for': ['tmux', 'conf'] }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 Plug 'derekwyatt/vim-scala',             { 'for': 'scala' }
-Plug 'elixir-editors/vim-elixir',           { 'for': 'elixir' }
+Plug 'elixir-editors/vim-elixir',        { 'for': 'elixir' }
 
 " ruby
 if has('ruby')
