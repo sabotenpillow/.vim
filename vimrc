@@ -6,14 +6,14 @@ endif
 
 Source 'common'
 
+" VSCode extension
 if exists('g:vscode')
-  " VSCode extension
   Source 'vscode'
+endif
+
+" source native vim or neovim
+if has('nvim')
+  Source 'neovim'
 else
-  " ordinary vim or neovim
-  if has('nvim')
-    Source 'neovim'
-  else
-    Source 'vim'
-  endif
+  Source 'native'
 endif
