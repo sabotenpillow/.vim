@@ -1,5 +1,10 @@
 set shell=/bin/bash
 
+function! Cond(Cond, ...)
+  let opts = get(a:000, 0, {})
+  return a:Cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
+
 "***********************************************************************
 " vim-plug
 "***********************************************************************
@@ -55,7 +60,10 @@ Plug 'moll/vim-node'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'coderifous/textobj-word-column.vim'
-Plug 'easymotion/vim-easymotion'
+" use normal easymotion when in vim mode
+Plug 'easymotion/vim-easymotion', Cond(!exists('g:vscode'))
+" use vscode easymotion when in vscode mode
+" Plug 'asvetliakov/vim-easymotion', Cond(exists('g:vscode'), { 'as': 'vsc-easymotion' })
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'

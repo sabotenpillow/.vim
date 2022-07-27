@@ -6,9 +6,9 @@ endif
 
 Source 'common'
 
-" VSCode extension
-if exists('g:vscode')
-  Source 'vscode'
+" source common between native vim and neovim
+if !exists('g:vscode')
+  Source 'origin'
 endif
 
 " source native vim or neovim
@@ -16,4 +16,9 @@ if has('nvim')
   Source 'neovim'
 else
   Source 'native'
+endif
+
+" VSCode extension
+if exists('g:vscode')
+  Source 'vscode'
 endif
