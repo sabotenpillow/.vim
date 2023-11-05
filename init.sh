@@ -1,7 +1,7 @@
 #!/bin/sh
 
 VIM_DIR=~/.vim
-if ! [ -d $VIM_DIR/autoload ]; then
+if ! [ -d $VIM_DIR/autoload/plug.vim ]; then
   curl -fLo $VIM_DIR/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 else

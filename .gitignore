@@ -11,7 +11,9 @@ nvim/data/autoload/*
 plugged/
 
 undo/
+undo.nvim
 
 .viminfo
+viminfo.nvim
 
 *.bak
