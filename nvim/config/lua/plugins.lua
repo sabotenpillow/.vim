@@ -47,6 +47,7 @@ Plug 'tpope/vim-surround'
 Plug 'cohama/lexima.vim'
 Plug 'osyo-manga/vim-over'
 Plug('junegunn/fzf', { dir = vim.fn.expand('~/.fzf'), ['do'] = './install --all' })
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'LeafCage/yankround.vim'
 Plug 'kana/vim-smartchr'
@@ -174,6 +175,11 @@ if is_installed('vim-startify') then
     '~/.dotfiles/tmux/.tmux.conf',
     '~/.dotfiles/tig',
   }
+end
+
+-- fzf.vim
+if is_installed('fzf.vim') then
+  map('n', '<M-p>', '<Cmd>Files<CR>')
 end
 
 -- indentLine
