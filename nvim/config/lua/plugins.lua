@@ -125,6 +125,17 @@ Plug 'mattn/emmet-vim'
 
 vim.call('plug#end')
 
+-- Colorscheme (must come after plug#end so plugins are on runtimepath)
+vim.cmd([[
+  try
+    colorscheme iceberg
+  catch
+    colorscheme pablo
+  endtry
+  syntax on
+  filetype plugin indent on
+]])
+
 -- ------------------------------------------------------------
 -- Plugin configuration helpers
 -- ------------------------------------------------------------

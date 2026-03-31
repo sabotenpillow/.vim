@@ -66,17 +66,6 @@ if vim.fn.has('termguicolors') == 1 then
   vim.opt.termguicolors = true
 end
 
--- Colorscheme (with fallback)
-vim.cmd([[
-  try
-    colorscheme iceberg
-  catch
-    colorscheme pablo
-  endtry
-  syntax on
-  filetype plugin indent on
-]])
-
 -- Security: disable dangerous commands in per-directory .vimrc
 vim.opt.secure = true
 
