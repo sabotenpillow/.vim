@@ -1,17 +1,12 @@
-local rc = require('mine.rc')
+-- Basic settings: options, keymaps, autocmds
+require('basic')
 
--- source common
-rc.source('common')
-
--- source common between native vim and neovim
-if vim.fn.exists('g:vscode') == 0 then
-  rc.source('origin')
+-- Plugin declarations and plugin-specific settings
+if vim.g.vscode == nil then
+  require('plugins')
 end
 
--- source neovim
-rc.source('neovim')
-
--- source vscode extension
-if vim.fn.exists('g:vscode') == 1 then
-  rc.source('vscode')
+-- VSCode Neovim extension settings
+if vim.g.vscode ~= nil then
+  require('vscode')
 end
