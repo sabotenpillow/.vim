@@ -36,6 +36,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-startify'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
 Plug('Shougo/vimproc.vim', { ['do'] = 'make' })
 Plug 'Shougo/vimshell.vim'
 Plug 'ekalinin/Dockerfile.vim'
@@ -148,6 +150,13 @@ local function is_installed(name)
 end
 
 local map = vim.keymap.set
+
+-- nvim-tree
+if is_installed('nvim-tree.lua') then
+  require('nvim-tree').setup()
+  map('n', '<Leader>e', '<Cmd>NvimTreeToggle<CR>')
+  map('n', '<Leader>E', '<Cmd>NvimTreeFindFile<CR>')
+end
 
 -- vim-startify
 if is_installed('vim-startify') then
