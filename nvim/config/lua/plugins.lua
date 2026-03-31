@@ -178,9 +178,7 @@ if is_installed('vim-startify') then
 end
 
 -- fzf.vim
-if is_installed('fzf.vim') then
-  map('n', '<M-p>', '<Cmd>Files<CR>')
-end
+map('n', '<M-p>', '<Cmd>Files<CR>')
 
 -- indentLine
 if is_installed('indentLine') then
