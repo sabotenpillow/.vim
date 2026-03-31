@@ -49,8 +49,16 @@ Plug 'junegunn/vim-easy-align'
 Plug 'LeafCage/yankround.vim'
 Plug 'kana/vim-smartchr'
 
--- Completion
-Plug('Shougo/deoplete.nvim', { ['do'] = ':UpdateRemotePlugins' })
+-- Completion (ddc.vim + denops.vim)
+Plug 'vim-denops/denops.vim'
+Plug 'Shougo/ddc.vim'
+Plug 'Shougo/pum.vim'
+Plug 'Shougo/ddc-ui-pum'
+Plug 'Shougo/ddc-source-around'
+Plug 'Shougo/ddc-source-nvim-lsp'
+Plug 'Shougo/ddc-filter-matcher_head'
+Plug 'Shougo/ddc-filter-sorter_rank'
+Plug 'Shougo/ddc-filter-converter_remove_overlap'
 
 -- Snippets
 Plug 'honza/vim-snippets'
@@ -192,17 +200,37 @@ if is_installed('yankround.vim') then
   map('n', '<C-n>', '<Plug>(yankround-next)')
 end
 
--- deoplete
-if is_installed('deoplete.nvim') then
-  vim.g['deoplete#enable_at_startup'] = 1
+-- ddc.vim
+if is_installed('ddc.vim') then
+  local patch_global = vim.fn['ddc#custom#patch_global']
+
+  patch_global('ui', 'pum')
+  patch_global('sources', { 'nvim-lsp', 'around' })
+  patch_global('sourceOptions', {
+    _ = {
+      matchers   = { 'matcher_head' },
+      sorters    = { 'sorter_rank' },
+      converters = { 'converter_remove_overlap' },
+    },
+    ['nvim-lsp'] = {
+      mark = 'L',
+      forceCompletionPattern = '\\.\\w*|:\\w*|->\\w*',
+    },
+    around = { mark = 'A' },
+  })
+
+  vim.fn['ddc#enable']()
+
+  -- pum.vim mappings
+  map('i', '<Tab>',   '<Cmd>call pum#map#insert_relative(+1)<CR>')
+  map('i', '<S-Tab>', '<Cmd>call pum#map#insert_relative(-1)<CR>')
+  map('i', '<C-y>',   '<Cmd>call pum#map#confirm()<CR>')
+  map('i', '<C-e>',   '<Cmd>call pum#map#cancel()<CR>')
 end
 
 -- vim-monster (Ruby completion)
 if is_installed('vim-monster') then
   vim.g['monster#completion#rcodetools#backend'] = 'async_rct_complete'
-  vim.g['deoplete#sources#omni#input_patterns'] = {
-    ruby = '[^. *\\t]\\.\\w*\\|\\h\\w*::',
-  }
 end
 
 -- todesking/ruby_hl_lvar.vim
