@@ -494,6 +494,7 @@ if is_installed('nvim-lspconfig') then
   end
 
   lspconfig.ruff.setup({ on_attach = on_attach })
+  lspconfig.ts_ls.setup({ on_attach = on_attach })
 end
 
 -- nvim-lint (mypy for Python)
