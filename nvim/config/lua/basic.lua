@@ -248,3 +248,8 @@ map('i', '<C-o>', '<End><CR>',    { silent = true })
 -- Visual mode line movement
 map('v', '<C-p>', '"zx<Up>"zP`[V`]')
 map('v', '<C-n>', '"zx"zp`[V`]')
+
+-- Window focus (<M-v><number>: focus Nth window)
+for i = 1, 9 do
+  map('n', '<M-v>' .. i, '<Cmd>' .. i .. 'wincmd w<CR>', { silent = true })
+end

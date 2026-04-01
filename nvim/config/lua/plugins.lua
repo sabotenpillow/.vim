@@ -155,8 +155,9 @@ local map = vim.keymap.set
 -- nvim-tree
 if is_installed('nvim-tree.lua') then
   require('nvim-tree').setup()
-  map('n', ',t', '<Cmd>NvimTreeToggle<CR>')
-  map('n', ',T', '<Cmd>NvimTreeFindFile<CR>')
+  map('n', ',t',    '<Cmd>NvimTreeToggle<CR>')
+  map('n', ',T',    '<Cmd>NvimTreeFindFile<CR>')
+  map('n', '<M-v>e', '<Cmd>NvimTreeFocus<CR>', { silent = true })
 end
 
 -- vim-startify
