@@ -126,6 +126,10 @@ Plug 'tpope/vim-rails'
 -- HTML
 Plug 'mattn/emmet-vim'
 
+-- LSP
+Plug 'neovim/nvim-lspconfig'
+Plug 'mfussenegger/nvim-lint'
+
 vim.call('plug#end')
 
 -- Colorscheme (must come after plug#end so plugins are on runtimepath)
@@ -470,4 +474,35 @@ end
 if is_installed('accelerated-jk') then
   map('n', 'j', '<Plug>(accelerated_jk_j)')
   map('n', 'k', '<Plug>(accelerated_jk_k)')
+end
+
+-- nvim-lspconfig (ruff for Python)
+if is_installed('nvim-lspconfig') then
+  local lspconfig = require('lspconfig')
+
+  local on_attach = function(_, bufnr)
+    local opts = { silent = true, buffer = bufnr }
+    map('n', 'gd',         vim.lsp.buf.definition,      opts)
+    map('n', 'K',          vim.lsp.buf.hover,            opts)
+    map('n', 'gi',         vim.lsp.buf.implementation,   opts)
+    map('n', 'gr',         vim.lsp.buf.references,       opts)
+    map('n', '<Leader>rn', vim.lsp.buf.rename,           opts)
+    map('n', '<Leader>ca', vim.lsp.buf.code_action,      opts)
+    map('n', ']d',         vim.diagnostic.goto_next,     opts)
+    map('n', '[d',         vim.diagnostic.goto_prev,     opts)
+    map('n', '<Leader>d',  vim.diagnostic.open_float,    opts)
+  end
+
+  lspconfig.ruff.setup({ on_attach = on_attach })
+end
+
+-- nvim-lint (mypy for Python)
+if is_installed('nvim-lint') then
+  require('lint').linters_by_ft = {
+    python = { 'mypy' },
+  }
+  vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+    group    = vim.api.nvim_create_augroup('nvim-lint', { clear = true }),
+    callback = function() require('lint').try_lint() end,
+  })
 end
