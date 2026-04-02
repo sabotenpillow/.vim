@@ -476,25 +476,25 @@ if is_installed('accelerated-jk') then
   map('n', 'k', '<Plug>(accelerated_jk_k)')
 end
 
--- nvim-lspconfig (ruff for Python)
+-- nvim-lspconfig (ruff for Python, ts_ls for TypeScript)
 if is_installed('nvim-lspconfig') then
-  local lspconfig = require('lspconfig')
+  vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('lsp-keymaps', { clear = true }),
+    callback = function(ev)
+      local opts = { silent = true, buffer = ev.buf }
+      map('n', 'gd',         vim.lsp.buf.definition,      opts)
+      map('n', 'K',          vim.lsp.buf.hover,            opts)
+      map('n', 'gi',         vim.lsp.buf.implementation,   opts)
+      map('n', 'gr',         vim.lsp.buf.references,       opts)
+      map('n', '<Leader>rn', vim.lsp.buf.rename,           opts)
+      map('n', '<Leader>ca', vim.lsp.buf.code_action,      opts)
+      map('n', ']d',         vim.diagnostic.goto_next,     opts)
+      map('n', '[d',         vim.diagnostic.goto_prev,     opts)
+      map('n', '<Leader>d',  vim.diagnostic.open_float,    opts)
+    end,
+  })
 
-  local on_attach = function(_, bufnr)
-    local opts = { silent = true, buffer = bufnr }
-    map('n', 'gd',         vim.lsp.buf.definition,      opts)
-    map('n', 'K',          vim.lsp.buf.hover,            opts)
-    map('n', 'gi',         vim.lsp.buf.implementation,   opts)
-    map('n', 'gr',         vim.lsp.buf.references,       opts)
-    map('n', '<Leader>rn', vim.lsp.buf.rename,           opts)
-    map('n', '<Leader>ca', vim.lsp.buf.code_action,      opts)
-    map('n', ']d',         vim.diagnostic.goto_next,     opts)
-    map('n', '[d',         vim.diagnostic.goto_prev,     opts)
-    map('n', '<Leader>d',  vim.diagnostic.open_float,    opts)
-  end
-
-  lspconfig.ruff.setup({ on_attach = on_attach })
-  lspconfig.ts_ls.setup({ on_attach = on_attach })
+  vim.lsp.enable({ 'ruff', 'ts_ls' })
 end
 
 -- nvim-lint (mypy for Python)
