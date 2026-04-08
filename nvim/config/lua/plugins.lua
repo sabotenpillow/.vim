@@ -58,7 +58,7 @@ Plug 'Shougo/ddc.vim'
 Plug 'Shougo/pum.vim'
 Plug 'Shougo/ddc-ui-pum'
 Plug 'Shougo/ddc-source-around'
-Plug 'Shougo/ddc-source-nvim-lsp'
+Plug 'Shougo/ddc-source-lsp'
 Plug 'Shougo/ddc-filter-matcher_head'
 Plug 'Shougo/ddc-filter-sorter_rank'
 Plug 'Shougo/ddc-filter-converter_remove_overlap'
@@ -127,6 +127,8 @@ Plug 'tpope/vim-rails'
 Plug 'mattn/emmet-vim'
 
 -- LSP
+Plug 'mason-org/mason.nvim'
+Plug 'mason-org/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'mfussenegger/nvim-lint'
 
@@ -234,14 +236,15 @@ if is_installed('ddc.vim') then
   local patch_global = vim.fn['ddc#custom#patch_global']
 
   patch_global('ui', 'pum')
-  patch_global('sources', { 'nvim-lsp', 'around' })
+  patch_global('sources', { 'lsp', 'around' })
   patch_global('sourceOptions', {
     _ = {
       matchers   = { 'matcher_head' },
       sorters    = { 'sorter_rank' },
       converters = { 'converter_remove_overlap' },
     },
-    ['nvim-lsp'] = {
+    ['lsp'] = {
+      isVolatile = true,
       mark = 'L',
       forceCompletionPattern = '\\.\\w*|:\\w*|->\\w*',
     },
@@ -476,8 +479,35 @@ if is_installed('accelerated-jk') then
   map('n', 'k', '<Plug>(accelerated_jk_k)')
 end
 
--- nvim-lspconfig (ruff for Python, ts_ls for TypeScript)
+-- mason.nvim / mason-lspconfig.nvim
+if is_installed('mason.nvim') then
+  require('mason').setup()
+end
+
+if is_installed('mason-lspconfig.nvim') then
+  require('mason-lspconfig').setup({
+    ensure_installed = { 'pylsp', 'ruff', 'ts_ls' },
+    automatic_enable = false,
+  })
+end
+
+-- nvim-lspconfig (pylsp + ruff for Python, ts_ls for TypeScript)
 if is_installed('nvim-lspconfig') then
+  vim.lsp.config('pylsp', {
+    settings = {
+      pylsp = {
+        plugins = {
+          autopep8 = { enabled = false },
+          mccabe = { enabled = false },
+          pycodestyle = { enabled = false },
+          pydocstyle = { enabled = false },
+          pyflakes = { enabled = false },
+          yapf = { enabled = false },
+        },
+      },
+    },
+  })
+
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('lsp-keymaps', { clear = true }),
     callback = function(ev)
@@ -494,7 +524,7 @@ if is_installed('nvim-lspconfig') then
     end,
   })
 
-  vim.lsp.enable({ 'ruff', 'ts_ls' })
+  vim.lsp.enable({ 'pylsp', 'ruff', 'ts_ls' })
 end
 
 -- nvim-lint (mypy for Python)
