@@ -168,17 +168,64 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 -- ------------------------------------------------------------
 local map = vim.keymap.set
 
+local function clipboard_regtype(mode)
+  if mode == 'line' or mode == 'V' then
+    return 'V'
+  end
+
+  if mode == 'block' or mode == '\022' then
+    return vim.api.nvim_replace_termcodes('<C-v>', true, true, true)
+  end
+
+  return 'v'
+end
+
+local function copy_region_to_system_clipboard(pos1, pos2, mode)
+  local regtype = clipboard_regtype(mode)
+  local lines = vim.fn.getregion(pos1, pos2, { type = regtype })
+  vim.fn.setreg('+', lines, regtype)
+end
+
+_G._nvim_system_clipboard_operator = function(mode)
+  copy_region_to_system_clipboard(vim.fn.getpos("'["), vim.fn.getpos("']"), mode)
+end
+
+local function start_system_clipboard_copy()
+  vim.go.operatorfunc = "v:lua._nvim_system_clipboard_operator"
+  return 'g@'
+end
+
+local function copy_visual_selection_to_system_clipboard()
+  copy_region_to_system_clipboard(vim.fn.getpos('v'), vim.fn.getpos('.'), vim.fn.mode())
+  vim.api.nvim_feedkeys(vim.keycode('<Esc>'), 'n', false)
+end
+
+local function copy_current_line_to_system_clipboard()
+  vim.fn.setreg('+', { vim.api.nvim_get_current_line() }, 'V')
+end
+
+local function copy_to_end_of_line_to_system_clipboard()
+  local pos1 = vim.fn.getpos('.')
+  local pos2 = vim.fn.getpos('.')
+  pos2[3] = math.max(vim.fn.col('$') - 1, 1)
+  copy_region_to_system_clipboard(pos1, pos2, 'v')
+end
+
 -- Leader
 vim.g.mapleader = ' '
 
 -- Normal & Visual
 map({ 'n', 'v' }, '<Leader>r', 'r')
+map('n', '<Leader>y', start_system_clipboard_copy, { expr = true })
+map('n', '<Leader>yy', copy_current_line_to_system_clipboard, { silent = true })
+map('x', '<Leader>y', copy_visual_selection_to_system_clipboard, { silent = true })
 map({ 'n', 'v' }, ',d', '"_d')
 map({ 'n', 'v' }, ',c', '"_c')
 map({ 'n', 'v' }, 'x',  '"_x')
 
 -- Normal mode
 map('n', 'Y',  'y$')
+map('n', '<Leader>Y', copy_to_end_of_line_to_system_clipboard, { silent = true })
 map('n', '}',  '}zz')
 map('n', '{',  '{zz')
 map('n', ']]', ']]zz')
