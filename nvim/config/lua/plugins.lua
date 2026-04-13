@@ -486,28 +486,13 @@ end
 
 if is_installed('mason-lspconfig.nvim') then
   require('mason-lspconfig').setup({
-    ensure_installed = { 'pylsp', 'ruff', 'ts_ls' },
+    ensure_installed = { 'pyright', 'ruff', 'ts_ls' },
     automatic_enable = false,
   })
 end
 
--- nvim-lspconfig (pylsp + ruff for Python, ts_ls for TypeScript)
+-- nvim-lspconfig (pyright + ruff for Python, ts_ls for TypeScript)
 if is_installed('nvim-lspconfig') then
-  vim.lsp.config('pylsp', {
-    settings = {
-      pylsp = {
-        plugins = {
-          autopep8 = { enabled = false },
-          mccabe = { enabled = false },
-          pycodestyle = { enabled = false },
-          pydocstyle = { enabled = false },
-          pyflakes = { enabled = false },
-          yapf = { enabled = false },
-        },
-      },
-    },
-  })
-
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('lsp-keymaps', { clear = true }),
     callback = function(ev)
@@ -524,7 +509,7 @@ if is_installed('nvim-lspconfig') then
     end,
   })
 
-  vim.lsp.enable({ 'pylsp', 'ruff', 'ts_ls' })
+  vim.lsp.enable({ 'pyright', 'ruff', 'ts_ls' })
 end
 
 -- nvim-lint (mypy for Python)

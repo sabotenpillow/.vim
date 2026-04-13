@@ -87,14 +87,14 @@
 You must install each server externally, then enable it in your config:
 
 ```lua
-vim.lsp.enable({ 'pylsp', 'ruff', 'ts_ls' })  -- add server names as needed
+vim.lsp.enable({ 'pyright', 'ruff', 'ts_ls' })  -- add server names as needed
 ```
 
 ### Currently used (this repo)
 
 | Language | Server | Install |
 |----------|--------|---------|
-| Python | `pylsp` | `:LspInstall pylsp` |
+| Python | `pyright` | `npm i -g pyright` |
 | Python | `ruff` | `:LspInstall ruff` |
 | TypeScript/JS | `ts_ls` | `:LspInstall ts_ls` |
 
@@ -122,11 +122,11 @@ Both installing and configuring are required, but config can be **minimal**.
 ### Required
 
 1. **Install** the `nvim-lspconfig` plugin
-2. **Install** the language server executable (e.g. `pip install ruff`)
+2. **Install** the language server executables (e.g. `npm i -g pyright`, `pip install ruff`)
 3. **Enable** the server — minimum 1 line of config:
 
 ```lua
-vim.lsp.enable({ 'pylsp', 'ruff', 'ts_ls' })
+vim.lsp.enable({ 'pyright', 'ruff', 'ts_ls' })
 ```
 
 Without this, servers never start. `nvim-lspconfig` provides defaults
