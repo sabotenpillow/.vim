@@ -198,6 +198,8 @@ set matchpairs& matchpairs+=<:>
 set showmatch
 " 不明
 set matchtime=3
+" Show full-file context in diff mode, including fugitive's Gdiffsplit.
+set diffopt+=context:99999
 " no Beep
 set visualbell
 set t_vb=
