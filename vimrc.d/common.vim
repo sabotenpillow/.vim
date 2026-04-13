@@ -208,7 +208,11 @@ set t_vb=
 " endif
 " set virtualedit=onemore
 " set viminfo
-set viminfo='50,\"1877,:0,h,n~/.vim/.viminfo
+let s:state_dir = expand('~/.vim/state')
+if !isdirectory(s:state_dir)
+  call mkdir(s:state_dir, 'p')
+endif
+execute 'set viminfo=' . "'50,\\\"1877,:0,h,n" . fnameescape(s:state_dir . '/.viminfo')
 
 " 画面に余裕を持たせてスクロール
 set scrolloff=5

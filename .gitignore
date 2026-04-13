@@ -12,6 +12,7 @@ plugged/
 
 undo/
 undo.nvim
+state/
 
 .viminfo
 viminfo.nvim

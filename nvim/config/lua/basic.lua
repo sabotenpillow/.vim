@@ -58,7 +58,9 @@ vim.opt.undofile = true
 vim.opt.undodir  = vim.fn.expand('~/.vim/undo.nvim')
 
 -- ShaDa (NeoVim replacement for viminfo, from neovim.vim)
-vim.opt.shadafile = vim.fn.expand('~/.vim/viminfo.nvim')
+local state_dir = vim.fn.expand('~/.vim/state')
+vim.fn.mkdir(state_dir, 'p')
+vim.opt.shadafile = state_dir .. '/viminfo.nvim'
 
 -- Terminal true colors
 if vim.fn.has('termguicolors') == 1 then
