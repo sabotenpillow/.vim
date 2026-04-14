@@ -175,7 +175,7 @@ local function with_window_cwd(path, fn)
   end
 end
 
-local function current_repo_root()
+local function fugitive_repo_root()
   if vim.fn.exists('*FugitiveWorkTree') == 1 then
     local bufname = vim.api.nvim_buf_get_name(0)
     if bufname ~= '' then
@@ -206,7 +206,7 @@ if is_installed('vim-fugitive') then
     local mods = opts.smods ~= '' and (opts.smods .. ' ') or ''
 
     if opts.args == '' then
-      with_window_cwd(current_repo_root(), function()
+      with_window_cwd(fugitive_repo_root(), function()
         vim.cmd(mods .. command)
       end)
     else
@@ -217,6 +217,19 @@ if is_installed('vim-fugitive') then
     nargs = '*',
     complete = 'customlist,fugitive#Complete',
   })
+end
+
+local function normalized_path(path)
+  return vim.fn.fnamemodify(path, ':p'):gsub('/+$', '')
+end
+
+local function current_repo_root()
+  local cwd = vim.fn.getcwd()
+  local root = vim.fn.systemlist({ 'git', '-C', cwd, 'rev-parse', '--show-toplevel' })
+  if vim.v.shell_error == 0 and root[1] and root[1] ~= '' then
+    return normalized_path(root[1])
+  end
+  return normalized_path(cwd)
 end
 
 -- nvim-tree
@@ -251,6 +264,70 @@ end
 map('n', '<M-p>', function()
   vim.cmd('Files ' .. escaped(startup_cwd))
 end)
+
+local function open_repo_recent_files()
+  local root = current_repo_root()
+  local prefix = root .. '/'
+  local recent = {}
+  local seen = {}
+
+  local function add_if_in_repo(path)
+    if path == '' then
+      return
+    end
+
+    local absolute = normalized_path(path)
+    if vim.fn.filereadable(absolute) ~= 1 then
+      return
+    end
+
+    if absolute ~= root and absolute:sub(1, #prefix) ~= prefix then
+      return
+    end
+
+    if seen[absolute] then
+      return
+    end
+
+    seen[absolute] = true
+    table.insert(recent, absolute)
+  end
+
+  add_if_in_repo(vim.fn.expand('%'))
+  for _, buf in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
+    add_if_in_repo(buf.name)
+  end
+  for _, path in ipairs(vim.v.oldfiles) do
+    add_if_in_repo(path)
+  end
+
+  if #recent == 0 then
+    vim.notify('No recent files in repository', vim.log.levels.INFO)
+    return
+  end
+
+  local source = vim.tbl_map(function(path)
+    return path:sub(#prefix + 1)
+  end, recent)
+
+  local spec = vim.fn['fzf#vim#with_preview']({
+    source = source,
+    options = {
+      '--scheme', 'path',
+      '--prompt', vim.fn.fnamemodify(root, ':t') .. '> ',
+      '--tiebreak=index',
+    },
+    sink = function(choice)
+      if choice and choice ~= '' then
+        vim.cmd('edit ' .. escaped(root .. '/' .. choice))
+      end
+    end,
+  })
+
+  vim.fn['fzf#run'](vim.fn['fzf#wrap']('repo-history-files', spec))
+end
+
+map('n', '<M-o>', open_repo_recent_files, { silent = true })
 
 -- indentLine
 if is_installed('indentLine') then
