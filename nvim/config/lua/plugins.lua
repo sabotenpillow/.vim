@@ -168,7 +168,9 @@ if is_installed('nvim-tree.lua') then
   require('nvim-tree').setup()
   map('n', ',t',    '<Cmd>NvimTreeToggle<CR>')
   map('n', ',T',    '<Cmd>NvimTreeFindFile<CR>')
-  map('n', '<M-v>e', '<Cmd>NvimTreeFocus<CR>', { silent = true })
+  map('n', '<M-v>e', function()
+    require('nvim-tree.api').tree.open({ path = startup_cwd, focus = true })
+  end, { silent = true })
 end
 
 -- vim-startify
