@@ -35,6 +35,8 @@ Plug 'cocopon/lightline-hybrid.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'mhinz/vim-startify'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
@@ -273,6 +275,11 @@ if is_installed('lightline.vim') then
     subseparator = { left = '|',      right = '|' },
   }
   vim.opt.laststatus = 2
+end
+
+-- gitsigns.nvim
+if is_installed('gitsigns.nvim') then
+  require('gitsigns').setup()
 end
 
 -- vim-easy-align
