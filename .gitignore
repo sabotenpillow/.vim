@@ -18,3 +18,5 @@ state/
 viminfo.nvim
 
 *.bak
+
+.DS_Store
