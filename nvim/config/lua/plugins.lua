@@ -568,6 +568,8 @@ if is_installed('nvim-lspconfig') then
       map('n', '<Leader>ca', vim.lsp.buf.code_action,      opts)
       map('n', ']d',         vim.diagnostic.goto_next,     opts)
       map('n', '[d',         vim.diagnostic.goto_prev,     opts)
+      map('n', '<C-9>',      vim.diagnostic.goto_next,     opts)
+      map('n', '<C-0>',      vim.diagnostic.goto_prev,     opts)
       map('n', '<Leader>d',  vim.diagnostic.open_float,    opts)
     end,
   })

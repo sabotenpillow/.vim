@@ -273,8 +273,6 @@ augroup vimrcEx
 augroup END
 
 "***** normal & commandline **********************************************
-"noremap <silent> <C-,> ^
-"noremap <silent> <C-.> $
 "noremap <silent> < {
 "noremap <silent> > }
 
