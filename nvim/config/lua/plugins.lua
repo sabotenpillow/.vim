@@ -163,6 +163,60 @@ local function escaped(path)
   return vim.fn.fnameescape(path)
 end
 
+local function with_window_cwd(path, fn)
+  local previous_cwd = vim.fn.getcwd()
+  vim.cmd('keepalt lcd ' .. escaped(path))
+  local ok, err = pcall(fn)
+  vim.cmd('keepalt lcd ' .. escaped(previous_cwd))
+  if not ok then
+    error(err)
+  end
+end
+
+local function current_repo_root()
+  if vim.fn.exists('*FugitiveWorkTree') == 1 then
+    local bufname = vim.api.nvim_buf_get_name(0)
+    if bufname ~= '' then
+      local buf_root = vim.fn.FugitiveWorkTree(vim.fn.fnamemodify(bufname, ':p:h'))
+      if buf_root ~= '' then
+        return buf_root
+      end
+    end
+
+    local startup_root = vim.fn.FugitiveWorkTree(startup_cwd)
+    if startup_root ~= '' then
+      return startup_root
+    end
+
+    local cwd_root = vim.fn.FugitiveWorkTree()
+    if cwd_root ~= '' then
+      return cwd_root
+    end
+  end
+
+  return startup_cwd
+end
+
+if is_installed('vim-fugitive') then
+  pcall(vim.cmd, 'delcommand Git')
+  vim.api.nvim_create_user_command('Git', function(opts)
+    local command = 'G' .. (opts.bang and '!' or '')
+    local mods = opts.smods ~= '' and (opts.smods .. ' ') or ''
+
+    if opts.args == '' then
+      with_window_cwd(current_repo_root(), function()
+        vim.cmd(mods .. command)
+      end)
+    else
+      vim.cmd(mods .. command .. ' ' .. opts.args)
+    end
+  end, {
+    bang = true,
+    nargs = '*',
+    complete = 'customlist,fugitive#Complete',
+  })
+end
+
 -- nvim-tree
 if is_installed('nvim-tree.lua') then
   require('nvim-tree').setup()
