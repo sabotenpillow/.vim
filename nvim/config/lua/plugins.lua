@@ -157,6 +157,11 @@ local function is_installed(name)
 end
 
 local map = vim.keymap.set
+local startup_cwd = vim.fn.getcwd()
+
+local function escaped(path)
+  return vim.fn.fnameescape(path)
+end
 
 -- nvim-tree
 if is_installed('nvim-tree.lua') then
@@ -185,7 +190,9 @@ if is_installed('vim-startify') then
 end
 
 -- fzf.vim
-map('n', '<M-p>', '<Cmd>Files<CR>')
+map('n', '<M-p>', function()
+  vim.cmd('Files ' .. escaped(startup_cwd))
+end)
 
 -- indentLine
 if is_installed('indentLine') then
