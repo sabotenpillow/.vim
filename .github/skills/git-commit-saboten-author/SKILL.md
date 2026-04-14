@@ -19,7 +19,7 @@ Use this skill when creating a git commit that should be authored as `saboten.pi
 
 ## Inputs
 
-- Commit message: ask for one if the user did not provide it.
+- Commit message: use the user-provided message when given. If the user does not provide one, treat that as leaving it to you and write a concise message that matches the staged change.
 - Extra commit options: accept optional extra `git commit` flags, or leave them blank.
 
 ## Commit command
