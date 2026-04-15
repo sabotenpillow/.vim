@@ -223,13 +223,41 @@ local function normalized_path(path)
   return vim.fn.fnamemodify(path, ':p'):gsub('/+$', '')
 end
 
-local function current_repo_root()
+local function current_git_root()
   local cwd = vim.fn.getcwd()
   local root = vim.fn.systemlist({ 'git', '-C', cwd, 'rev-parse', '--show-toplevel' })
   if vim.v.shell_error == 0 and root[1] and root[1] ~= '' then
     return normalized_path(root[1])
   end
-  return normalized_path(cwd)
+end
+
+local function current_repo_root()
+  local root = current_git_root()
+  if root then
+    return root
+  end
+  return normalized_path(vim.fn.getcwd())
+end
+
+local function git_lines(root, args)
+  local cmd = { 'git', '-C', root }
+  vim.list_extend(cmd, args)
+
+  local lines = vim.fn.systemlist(cmd)
+  if vim.v.shell_error ~= 0 then
+    return nil
+  end
+  return lines
+end
+
+local function open_with_fzf_action(path, action)
+  local command = ({
+    ['ctrl-x'] = 'split',
+    ['ctrl-v'] = 'vsplit',
+    ['ctrl-t'] = 'tabedit',
+  })[action] or 'edit'
+
+  vim.cmd(command .. ' ' .. escaped(path))
 end
 
 -- nvim-tree
@@ -264,6 +292,66 @@ end
 map('n', '<M-p>', function()
   vim.cmd('Files ' .. escaped(startup_cwd))
 end)
+
+local function open_changed_files_float()
+  local root = current_git_root()
+  if not root then
+    vim.notify('Not in a git repository', vim.log.levels.WARN)
+    return
+  end
+
+  local changed = {}
+  local seen = {}
+  local sources = {
+    { 'diff', '--name-only', '--relative', '--diff-filter=ACMRTUXB' },
+    { 'diff', '--cached', '--name-only', '--relative', '--diff-filter=ACMRTUXB' },
+    { 'ls-files', '--others', '--exclude-standard' },
+  }
+
+  for _, args in ipairs(sources) do
+    local lines = git_lines(root, args)
+    if lines then
+      for _, path in ipairs(lines) do
+        if path ~= '' and not seen[path] and vim.fn.filereadable(root .. '/' .. path) == 1 then
+          seen[path] = true
+          table.insert(changed, path)
+        end
+      end
+    end
+  end
+
+  if #changed == 0 then
+    vim.notify('No changed files', vim.log.levels.INFO)
+    return
+  end
+
+  local spec = vim.fn['fzf#vim#with_preview']({
+    dir = root,
+    source = changed,
+    options = {
+      '--prompt', 'GitChanged> ',
+      '--scheme', 'path',
+      '--tiebreak=index',
+      '--expect=ctrl-x,ctrl-v,ctrl-t',
+    },
+    ['sink*'] = function(lines)
+      if not lines or #lines < 2 then
+        return
+      end
+
+      local action = lines[1]
+      local choice = lines[2]
+      if choice and choice ~= '' then
+        open_with_fzf_action(root .. '/' .. choice, action)
+      end
+    end,
+    window = { width = 0.9, height = 0.6 },
+  })
+
+  vim.fn['fzf#run'](vim.fn['fzf#wrap']('git-changed-files', spec))
+end
+
+map('n', '<M-g>', open_changed_files_float, { silent = true })
 
 local function open_repo_recent_files()
   local root = current_repo_root()
