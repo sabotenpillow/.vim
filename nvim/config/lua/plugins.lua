@@ -260,6 +260,38 @@ local function open_with_fzf_action(path, action)
   vim.cmd(command .. ' ' .. escaped(path))
 end
 
+local function open_git_file_picker(name, root, paths, prompt, empty_message)
+  if #paths == 0 then
+    vim.notify(empty_message, vim.log.levels.INFO)
+    return
+  end
+
+  local spec = vim.fn['fzf#vim#with_preview']({
+    dir = root,
+    source = paths,
+    options = {
+      '--prompt', prompt,
+      '--scheme', 'path',
+      '--tiebreak=index',
+      '--expect=ctrl-x,ctrl-v,ctrl-t',
+    },
+    ['sink*'] = function(lines)
+      if not lines or #lines < 2 then
+        return
+      end
+
+      local action = lines[1]
+      local choice = lines[2]
+      if choice and choice ~= '' then
+        open_with_fzf_action(root .. '/' .. choice, action)
+      end
+    end,
+    window = { width = 0.9, height = 0.6 },
+  })
+
+  vim.fn['fzf#run'](vim.fn['fzf#wrap'](name, spec))
+end
+
 -- nvim-tree
 if is_installed('nvim-tree.lua') then
   require('nvim-tree').setup()
@@ -289,9 +321,28 @@ if is_installed('vim-startify') then
 end
 
 -- fzf.vim
-map('n', '<M-p>', function()
-  vim.cmd('Files ' .. escaped(startup_cwd))
-end)
+local function open_repo_files_float()
+  local root = current_git_root()
+  if not root then
+    vim.notify('Not in a git repository', vim.log.levels.WARN)
+    return
+  end
+
+  local files = {}
+  local seen = {}
+  local paths = git_lines(root, { 'ls-files', '--cached', '--others', '--exclude-standard' }) or {}
+
+  for _, path in ipairs(paths) do
+    if path ~= '' and not seen[path] and vim.fn.filereadable(root .. '/' .. path) == 1 then
+      seen[path] = true
+      table.insert(files, path)
+    end
+  end
+
+  open_git_file_picker('git-repo-files', root, files, 'GitFiles> ', 'No files in repository')
+end
+
+map('n', '<M-p>', open_repo_files_float, { silent = true })
 
 local function open_changed_files_float()
   local root = current_git_root()
@@ -320,38 +371,23 @@ local function open_changed_files_float()
     end
   end
 
-  if #changed == 0 then
-    vim.notify('No changed files', vim.log.levels.INFO)
-    return
-  end
-
-  local spec = vim.fn['fzf#vim#with_preview']({
-    dir = root,
-    source = changed,
-    options = {
-      '--prompt', 'GitChanged> ',
-      '--scheme', 'path',
-      '--tiebreak=index',
-      '--expect=ctrl-x,ctrl-v,ctrl-t',
-    },
-    ['sink*'] = function(lines)
-      if not lines or #lines < 2 then
-        return
-      end
-
-      local action = lines[1]
-      local choice = lines[2]
-      if choice and choice ~= '' then
-        open_with_fzf_action(root .. '/' .. choice, action)
-      end
-    end,
-    window = { width = 0.9, height = 0.6 },
-  })
-
-  vim.fn['fzf#run'](vim.fn['fzf#wrap']('git-changed-files', spec))
+  open_git_file_picker('git-changed-files', root, changed, 'GitChanged> ', 'No changed files')
 end
 
 map('n', '<M-g>', open_changed_files_float, { silent = true })
+
+local function open_ignored_files_float()
+  local root = current_git_root()
+  if not root then
+    vim.notify('Not in a git repository', vim.log.levels.WARN)
+    return
+  end
+
+  local ignored = git_lines(root, { 'ls-files', '--others', '--ignored', '--exclude-standard' }) or {}
+  open_git_file_picker('git-ignored-files', root, ignored, 'GitIgnored> ', 'No ignored files')
+end
+
+map('n', '<M-i>', open_ignored_files_float, { silent = true })
 
 local function open_repo_recent_files()
   local root = current_repo_root()
@@ -444,7 +480,24 @@ end
 
 -- gitsigns.nvim
 if is_installed('gitsigns.nvim') then
-  require('gitsigns').setup()
+  require('gitsigns').setup({
+    on_attach = function(bufnr)
+      local gitsigns = require('gitsigns')
+
+      local function hunk_map(lhs, fallback, jump)
+        map('n', lhs, function()
+          if vim.wo.diff then
+            vim.cmd.normal({ fallback, bang = true })
+          else
+            jump()
+          end
+        end, { buffer = bufnr, desc = 'Git hunk navigation' })
+      end
+
+      hunk_map('gh', ']c', gitsigns.next_hunk)
+      hunk_map('gH', '[c', gitsigns.prev_hunk)
+    end,
+  })
 end
 
 -- vim-easy-align
