@@ -304,8 +304,23 @@ end
 
 -- vim-startify
 if is_installed('vim-startify') then
+  if vim.fn.exists(':StartifyGitStatus') == 0 then
+    vim.api.nvim_create_user_command('StartifyGitStatus', function()
+      local startify_buf = vim.api.nvim_get_current_buf()
+
+      vim.cmd('Git')
+
+      if vim.api.nvim_buf_is_valid(startify_buf) and vim.bo[startify_buf].filetype == 'startify' then
+        vim.api.nvim_buf_delete(startify_buf, { force = true })
+      end
+    end, {})
+  end
+
   vim.g.startify_custom_header  = vim.fn.map(vim.fn.split(vim.fn.system('date'), '\n'), '"   " . v:val') -- luacheck: ignore
   vim.g.startify_custom_indices = { 'f','d','n','m','v','g','u','r','i','s','l','a','c','x','w','o','h','y','t','b','z','p' }
+  vim.g.startify_commands = {
+    { 'Git status', 'StartifyGitStatus' },
+  }
   vim.g.startify_bookmarks = {
     '~/.vim/vimrc',
     '~/.zshrc',
@@ -496,6 +511,20 @@ if is_installed('gitsigns.nvim') then
 
       hunk_map('gh', ']c', gitsigns.next_hunk)
       hunk_map('gH', '[c', gitsigns.prev_hunk)
+    end,
+  })
+end
+
+-- vim-fugitive
+if is_installed('vim-fugitive') then
+  vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'fugitive',
+    callback = function(ev)
+      map('n', 'dt', 'O:Gvdiffsplit<CR>', {
+        buffer = ev.buf,
+        silent = true,
+        desc = 'Open Fugitive diff in new tab',
+      })
     end,
   })
 end
