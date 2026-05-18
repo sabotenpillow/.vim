@@ -499,28 +499,57 @@ if is_installed('gitsigns.nvim') then
     on_attach = function(bufnr)
       local gitsigns = require('gitsigns')
 
-      local function hunk_map(lhs, fallback, jump)
+      local function hunk_map(lhs, fallback, jump, desc)
         map('n', lhs, function()
           if vim.wo.diff then
             vim.cmd.normal({ fallback, bang = true })
           else
             jump()
           end
-        end, { buffer = bufnr, desc = 'Git hunk navigation' })
+        end, { buffer = bufnr, desc = desc })
       end
 
-      hunk_map('gh', ']c', gitsigns.next_hunk)
-      hunk_map('gH', '[c', gitsigns.prev_hunk)
+      hunk_map('gh', ']c', gitsigns.next_hunk, 'Next git hunk')
+      hunk_map('gH', '[c', gitsigns.prev_hunk, 'Previous git hunk')
+      hunk_map('gs', ']c', function()
+        gitsigns.nav_hunk('next', { target = 'staged' })
+      end, 'Next staged git hunk')
+      hunk_map('gS', '[c', function()
+        gitsigns.nav_hunk('prev', { target = 'staged' })
+      end, 'Previous staged git hunk')
     end,
   })
 end
+
+local function navigate_staged_hunk(direction, fallback)
+  if vim.wo.diff then
+    vim.cmd.normal({ fallback, bang = true })
+    return
+  end
+
+  local ok, gitsigns = pcall(require, 'gitsigns')
+  if ok then
+    gitsigns.nav_hunk(direction, { target = 'staged' })
+  end
+end
+
+map('n', 'gs', function()
+  navigate_staged_hunk('next', ']c')
+end, { silent = true, desc = 'Next staged git hunk' })
+
+map('n', 'gS', function()
+  navigate_staged_hunk('prev', '[c')
+end, { silent = true, desc = 'Previous staged git hunk' })
 
 -- vim-fugitive
 if is_installed('vim-fugitive') then
   vim.api.nvim_create_autocmd('FileType', {
     pattern = 'fugitive',
     callback = function(ev)
-      map('n', 'dt', 'O:Gvdiffsplit<CR>', {
+      map('n', 'dt', function()
+        vim.cmd.normal({ 'O' })
+        vim.cmd('Gvdiffsplit')
+      end, {
         buffer = ev.buf,
         silent = true,
         desc = 'Open Fugitive diff in new tab',
