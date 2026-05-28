@@ -134,6 +134,14 @@ Plug 'mason-org/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'mfussenegger/nvim-lint'
 
+-- Testing
+Plug 'antoinemadec/FixCursorHold.nvim'
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate', ['branch'] = 'master' })
+Plug 'nvim-neotest/nvim-nio'
+Plug 'nvim-neotest/neotest'
+Plug 'nvim-neotest/neotest-python'
+Plug 'marilari88/neotest-vitest'
+
 vim.call('plug#end')
 
 -- Colorscheme (must come after plug#end so plugins are on runtimepath)
@@ -858,6 +866,62 @@ if is_installed('nvim-lspconfig') then
   })
 
   vim.lsp.enable({ 'pyright', 'ruff', 'ts_ls' })
+end
+
+-- nvim-treesitter
+if is_installed('nvim-treesitter') then
+  local ok, configs = pcall(require, 'nvim-treesitter.configs')
+  if ok then
+    configs.setup({
+      ensure_installed = { 'python', 'javascript', 'typescript', 'tsx' },
+      auto_install = true,
+      highlight = { enable = false },
+      indent = { enable = false },
+    })
+  else
+    local ok_ts, treesitter = pcall(require, 'nvim-treesitter')
+    if ok_ts then
+      treesitter.setup({})
+    end
+  end
+end
+
+-- neotest
+if is_installed('neotest') then
+  local neotest = require('neotest')
+  local adapters = {
+    require('neotest-python')({
+      runner = 'pytest',
+    }),
+  }
+
+  if is_installed('neotest-vitest') then
+    table.insert(adapters, require('neotest-vitest')({
+      filter_dir = function(name)
+        return name ~= 'node_modules'
+      end,
+    }))
+  end
+
+  neotest.setup({
+    adapters = adapters,
+  })
+
+  vim.api.nvim_create_user_command('NeotestNearest', function()
+    neotest.run.run()
+  end, {})
+
+  vim.api.nvim_create_user_command('NeotestFile', function()
+    neotest.run.run(vim.fn.expand('%'))
+  end, {})
+
+  vim.api.nvim_create_user_command('NeotestSummary', function()
+    neotest.summary.toggle()
+  end, {})
+
+  vim.api.nvim_create_user_command('NeotestOutput', function()
+    neotest.output.open({ enter = true, auto_close = true })
+  end, {})
 end
 
 -- nvim-lint (mypy for Python)
