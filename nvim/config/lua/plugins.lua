@@ -177,7 +177,6 @@ local function is_installed(name)
 end
 
 local map = vim.keymap.set
-local startup_cwd = vim.fn.getcwd()
 
 local function escaped(path)
   return vim.fn.fnameescape(path)
@@ -308,6 +307,125 @@ local function open_git_file_picker(name, root, paths, prompt, empty_message)
   })
 
   vim.fn['fzf#run'](vim.fn['fzf#wrap'](name, spec))
+end
+
+local function repo_relative_path(root, path)
+  local prefix = root .. '/'
+  if path == root then
+    return '.'
+  end
+  if path:sub(1, #prefix) == prefix then
+    return path:sub(#prefix + 1)
+  end
+  return path
+end
+
+local function open_file_at_position(path, action, lnum, col)
+  open_with_fzf_action(path, action)
+  vim.api.nvim_win_set_cursor(0, { lnum, math.max(col - 1, 0) })
+  vim.cmd('normal! zz')
+end
+
+local function lsp_symbol_entry(root, item)
+  local location = item.location
+  if not location or not location.uri or not location.range then
+    return nil
+  end
+
+  local path = normalized_path(vim.uri_to_fname(location.uri))
+  local relpath = repo_relative_path(root, path)
+  local kind = vim.lsp.protocol.SymbolKind[item.kind] or 'Unknown'
+  local lnum = location.range.start.line + 1
+  local col = location.range.start.character + 1
+  local columns = {
+    item.name .. ' [' .. kind .. ']',
+    relpath,
+    tostring(lnum),
+    tostring(col),
+  }
+
+  if item.containerName and item.containerName ~= '' then
+    table.insert(columns, item.containerName)
+  end
+
+  return table.concat(columns, '\t')
+end
+
+local function lsp_symbol_path(root, path)
+  if path:sub(1, 1) == '/' then
+    return path
+  end
+  return root .. '/' .. path
+end
+
+local function lsp_symbol_query_at_cursor()
+  return vim.fn.expand('<cword>')
+end
+
+local function open_lsp_symbol_picker(query)
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_clients({ bufnr = bufnr, method = 'workspace/symbol' })
+  if #clients == 0 then
+    vim.notify('No attached LSP supports workspace/symbol', vim.log.levels.WARN)
+    return
+  end
+
+  local responses = vim.lsp.buf_request_sync(bufnr, 'workspace/symbol', { query = query }, 5000)
+  if not responses then
+    vim.notify('LSP symbol search timed out', vim.log.levels.WARN)
+    return
+  end
+
+  local root = current_repo_root()
+  local items = {}
+  for _, response in pairs(responses) do
+    if response.result then
+      for _, item in ipairs(response.result) do
+        local entry = lsp_symbol_entry(root, item)
+        if entry then
+          table.insert(items, entry)
+        end
+      end
+    end
+  end
+
+  if #items == 0 then
+    vim.notify('No symbols found for ' .. query, vim.log.levels.INFO)
+    return
+  end
+
+  table.sort(items)
+
+  local spec = vim.fn['fzf#vim#with_preview']({
+    dir = root,
+    source = items,
+    options = {
+      '--prompt', 'LspSymbols> ',
+      '--delimiter=\t',
+      '--preview=sh -c \'file="$1"; line="$2"; start=$((line>3 ? line-3 : 1)); finish=$((line+3)); sed -n "${start},${finish}p" "$file"\' sh {2} {3}',
+      '--preview-window=right:70%',
+      '--expect=ctrl-x,ctrl-v,ctrl-t',
+    },
+    ['sink*'] = function(lines)
+      if not lines or #lines < 2 then
+        return
+      end
+
+      local action = lines[1]
+      local fields = vim.split(lines[2], '\t', { plain = true })
+      local path = fields[2]
+      local lnum = tonumber(fields[3]) or 1
+      local col = tonumber(fields[4]) or 1
+      if not path or path == '' then
+        return
+      end
+
+      open_file_at_position(lsp_symbol_path(root, path), action, lnum, col)
+    end,
+    window = { width = 0.9, height = 0.6 },
+  })
+
+  vim.fn['fzf#run'](vim.fn['fzf#wrap']('lsp-symbols', spec))
 end
 
 -- nvim-tree
@@ -854,6 +972,25 @@ end
 
 -- nvim-lspconfig (pyright + ruff for Python, ts_ls for TypeScript)
 if is_installed('nvim-lspconfig') then
+  vim.api.nvim_create_user_command('LspSymbols', function(opts)
+    local query = opts.args ~= '' and opts.args or vim.fn.input('LSP symbol query: ')
+    if query == '' then
+      return
+    end
+    open_lsp_symbol_picker(query)
+  end, {
+    nargs = '*',
+  })
+
+  vim.api.nvim_create_user_command('LspSymbolsCursor', function()
+    local query = lsp_symbol_query_at_cursor()
+    if query == '' then
+      vim.notify('No symbol under cursor', vim.log.levels.WARN)
+      return
+    end
+    open_lsp_symbol_picker(query)
+  end, {})
+
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('lsp-keymaps', { clear = true }),
     callback = function(ev)
@@ -869,6 +1006,8 @@ if is_installed('nvim-lspconfig') then
       map('n', '<C-9>',      vim.diagnostic.goto_next,     opts)
       map('n', '<C-0>',      vim.diagnostic.goto_prev,     opts)
       map('n', '<Leader>d',  vim.diagnostic.open_float,    opts)
+      map('n', '<Leader>lS', '<Cmd>LspSymbols<CR>',        opts)
+      map('n', '<Leader>ls', '<Cmd>LspSymbolsCursor<CR>',  opts)
     end,
   })
 
