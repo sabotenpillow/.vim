@@ -428,6 +428,80 @@ local function open_lsp_symbol_picker(query)
   vim.fn['fzf#run'](vim.fn['fzf#wrap']('lsp-symbols', spec))
 end
 
+local function branch_diff_path(line)
+  local fields = vim.split(line, '\t', { plain = true })
+  if #fields >= 3 then
+    return fields[3]
+  end
+  return fields[2]
+end
+
+local function open_branch_diff_picker(base)
+  local root = current_git_root()
+  if not root then
+    vim.notify('Not in a git repository', vim.log.levels.WARN)
+    return
+  end
+
+  local range = base .. '...HEAD'
+  local changed = git_lines(root, {
+    'diff',
+    '--name-status',
+    '--find-renames',
+    '--relative',
+    range,
+  })
+
+  if not changed then
+    vim.notify('Failed to diff against ' .. base .. '. Fetch that ref first if needed.', vim.log.levels.WARN)
+    return
+  end
+
+  if #changed == 0 then
+    vim.notify('No files changed vs ' .. base, vim.log.levels.INFO)
+    return
+  end
+
+  local preview = table.concat({
+    'git',
+    '-C',
+    vim.fn.shellescape(root),
+    '--no-pager',
+    'diff',
+    '--color=always',
+    range,
+    '--',
+    '{2}',
+  }, ' ')
+
+  local spec = vim.fn['fzf#vim#with_preview']({
+    dir = root,
+    source = changed,
+    options = {
+      '--prompt', base .. '> ',
+      '--delimiter=\t',
+      '--with-nth=2..',
+      '--preview=' .. preview,
+      '--preview-window=right:70%',
+    },
+    sink = function(choice)
+      if not choice or choice == '' then
+        return
+      end
+
+      local path = branch_diff_path(choice)
+      if not path or path == '' then
+        return
+      end
+
+      vim.cmd('Git difftool -y ' .. range .. ' -- ' .. escaped(path))
+    end,
+    window = { width = 0.9, height = 0.6 },
+  })
+
+  vim.fn['fzf#run'](vim.fn['fzf#wrap']('git-branch-diff-files', spec))
+end
+
 -- nvim-tree
 if is_installed('nvim-tree.lua') then
   require('nvim-tree').setup()
@@ -523,6 +597,15 @@ local function open_changed_files_float()
 end
 
 map('n', '<M-g>', open_changed_files_float, { silent = true })
+map('n', '<M-d>', function()
+  open_branch_diff_picker('origin/main')
+end, { silent = true, desc = 'Changed files vs origin/main' })
+
+vim.api.nvim_create_user_command('GitBranchDiffFiles', function(opts)
+  open_branch_diff_picker(opts.args ~= '' and opts.args or 'origin/main')
+end, {
+  nargs = '?',
+})
 
 local function open_ignored_files_float()
   local root = current_git_root()
