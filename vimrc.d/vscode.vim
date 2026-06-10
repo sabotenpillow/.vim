@@ -1,5 +1,3 @@
-let maplocalleader="\<M-v>"
-
 " definition
 " goToDefinition は存在しない
 nnoremap gd <Cmd>call VSCodeNotify('editor.action.revealDefinition')<CR>
