@@ -14,6 +14,16 @@ end
 
 local is_vscode = vim.g.vscode ~= nil
 
+local function append_fzf_default_bind(binding)
+  local option = '--bind ' .. binding
+  local current = vim.env.FZF_DEFAULT_OPTS or ''
+  if not string.find(current, option, 1, true) then
+    vim.env.FZF_DEFAULT_OPTS = current == '' and option or (current .. ' ' .. option)
+  end
+end
+
+append_fzf_default_bind('ctrl-w:backward-kill-word')
+
 -- ------------------------------------------------------------
 -- vim-plug declarations
 -- ------------------------------------------------------------

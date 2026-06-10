@@ -5,6 +5,15 @@ function! Cond(Cond, ...)
   return a:Cond ? opts : extend(opts, { 'on': [], 'for': [] })
 endfunction
 
+function! s:append_fzf_default_bind(binding) abort
+  let option = '--bind ' . a:binding
+  if stridx($FZF_DEFAULT_OPTS, option) < 0
+    let $FZF_DEFAULT_OPTS = empty($FZF_DEFAULT_OPTS) ? option : $FZF_DEFAULT_OPTS . ' ' . option
+  endif
+endfunction
+
+call s:append_fzf_default_bind('ctrl-w:backward-kill-word')
+
 "***********************************************************************
 " vim-plug
 "***********************************************************************
