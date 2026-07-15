@@ -33,3 +33,16 @@ if ! [ -L $NVIM_DATA_DIR ]; then
 else
   echo "already linked '$NVIM_DATA_DIR' to '$VIM_DIR/nvim/data'."
 fi
+
+## nvim-treesitter query symlinks (ecma/jsx inherited queries)
+TS_QUERIES="$VIM_DIR/plugged/nvim-treesitter/runtime/queries"
+QUERIES_DIR="$VIM_DIR/nvim/data/queries"
+mkdir -p $QUERIES_DIR
+for lang in ecma jsx; do
+  if [ -d "$TS_QUERIES/$lang" ] && ! [ -L "$QUERIES_DIR/$lang" ]; then
+    ln -s "$TS_QUERIES/$lang" "$QUERIES_DIR/$lang" \
+    && echo "linked '$QUERIES_DIR/$lang' to '$TS_QUERIES/$lang' !!!!!"
+  else
+    echo "already linked (or source missing) '$QUERIES_DIR/$lang'."
+  fi
+done
