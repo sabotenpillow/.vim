@@ -523,6 +523,8 @@ if is_installed('vim-startify') then
     end, {})
   end
 
+  -- ファイルを開いてもカレントディレクトリを変更しない
+  vim.g.startify_change_to_dir = 0
   vim.g.startify_custom_header  = vim.fn.map(vim.fn.split(vim.fn.system('date'), '\n'), '"   " . v:val') -- luacheck: ignore
   vim.g.startify_custom_indices = { 'f','d','n','m','v','g','u','r','i','s','l','a','c','x','w','o','h','y','t','b','z','p' }
   vim.g.startify_commands = {

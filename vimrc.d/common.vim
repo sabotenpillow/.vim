@@ -398,6 +398,8 @@ endfunction
 " }}}
 
 if s:plug.is_installed('vim-startify') " {{{
+  " ファイルを開いてもカレントディレクトリを変更しない
+  let g:startify_change_to_dir = 0
   " startifyのヘッダー部分に表示する文字列を設定する(dateコマンドを実行して日付を設定している)
   let g:startify_custom_header =
     \ map(split(system('date'), '\n'), '"   ". v:val') + ['','']
