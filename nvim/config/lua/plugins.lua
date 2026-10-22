@@ -428,6 +428,97 @@ local function open_lsp_symbol_picker(query)
   vim.fn['fzf#run'](vim.fn['fzf#wrap']('lsp-symbols', spec))
 end
 
+local function flatten_document_symbols(root, path, symbols, container, acc)
+  for _, item in ipairs(symbols) do
+    local range = item.selectionRange or item.range
+    if not range and item.location then
+      range = item.location.range
+    end
+    if range then
+      local kind = vim.lsp.protocol.SymbolKind[item.kind] or 'Unknown'
+      local lnum = range.start.line + 1
+      local col = range.start.character + 1
+      local columns = {
+        item.name .. ' [' .. kind .. ']',
+        repo_relative_path(root, path),
+        tostring(lnum),
+        tostring(col),
+      }
+      local parent = container or item.containerName
+      if parent and parent ~= '' then
+        table.insert(columns, parent)
+      end
+      table.insert(acc, table.concat(columns, '\t'))
+    end
+    if item.children and #item.children > 0 then
+      flatten_document_symbols(root, path, item.children, item.name, acc)
+    end
+  end
+end
+
+local function open_lsp_document_symbol_picker()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_clients({ bufnr = bufnr, method = 'textDocument/documentSymbol' })
+  if #clients == 0 then
+    vim.notify('No attached LSP supports textDocument/documentSymbol', vim.log.levels.WARN)
+    return
+  end
+
+  local params = { textDocument = vim.lsp.util.make_text_document_params(bufnr) }
+  local responses = vim.lsp.buf_request_sync(bufnr, 'textDocument/documentSymbol', params, 5000)
+  if not responses then
+    vim.notify('LSP document symbol request timed out', vim.log.levels.WARN)
+    return
+  end
+
+  local root = current_repo_root()
+  local path = normalized_path(vim.api.nvim_buf_get_name(bufnr))
+  local items = {}
+  for _, response in pairs(responses) do
+    if response.result then
+      flatten_document_symbols(root, path, response.result, nil, items)
+    end
+  end
+
+  if #items == 0 then
+    vim.notify('No document symbols found', vim.log.levels.INFO)
+    return
+  end
+
+  -- keep document order; it reads as a file outline
+
+  local spec = vim.fn['fzf#vim#with_preview']({
+    dir = root,
+    source = items,
+    options = {
+      '--prompt', 'DocSymbols> ',
+      '--delimiter=\t',
+      '--preview=sh -c \'file="$1"; line="$2"; start=$((line>3 ? line-3 : 1)); finish=$((line+3)); sed -n "${start},${finish}p" "$file"\' sh {2} {3}',
+      '--preview-window=right:70%',
+      '--expect=ctrl-x,ctrl-v,ctrl-t',
+    },
+    ['sink*'] = function(lines)
+      if not lines or #lines < 2 then
+        return
+      end
+
+      local action = lines[1]
+      local fields = vim.split(lines[2], '\t', { plain = true })
+      local file = fields[2]
+      local lnum = tonumber(fields[3]) or 1
+      local col = tonumber(fields[4]) or 1
+      if not file or file == '' then
+        return
+      end
+
+      open_file_at_position(lsp_symbol_path(root, file), action, lnum, col)
+    end,
+    window = { width = 0.9, height = 0.6 },
+  })
+
+  vim.fn['fzf#run'](vim.fn['fzf#wrap']('lsp-document-symbols', spec))
+end
+
 local function branch_diff_path(line)
   local fields = vim.split(line, '\t', { plain = true })
   if #fields >= 3 then
@@ -1076,6 +1167,10 @@ if is_installed('nvim-lspconfig') then
     open_lsp_symbol_picker(query)
   end, {})
 
+  vim.api.nvim_create_user_command('LspDocumentSymbols', function()
+    open_lsp_document_symbol_picker()
+  end, {})
+
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('lsp-keymaps', { clear = true }),
     callback = function(ev)
@@ -1091,8 +1186,9 @@ if is_installed('nvim-lspconfig') then
       map('n', '<C-9>',      vim.diagnostic.goto_next,     opts)
       map('n', '<C-0>',      vim.diagnostic.goto_prev,     opts)
       map('n', '<Leader>d',  vim.diagnostic.open_float,    opts)
-      map('n', '<Leader>lS', '<Cmd>LspSymbols<CR>',        opts)
-      map('n', '<Leader>ls', '<Cmd>LspSymbolsCursor<CR>',  opts)
+      map('n', '<Leader>lS', '<Cmd>LspSymbols<CR>',          opts)
+      map('n', '<Leader>ls', '<Cmd>LspSymbolsCursor<CR>',    opts)
+      map('n', '<Leader>lo', '<Cmd>LspDocumentSymbols<CR>',  opts)
     end,
   })
 
