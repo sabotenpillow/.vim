@@ -202,18 +202,13 @@ local function fugitive_repo_root()
       end
     end
 
-    local startup_root = vim.fn.FugitiveWorkTree(startup_cwd)
-    if startup_root ~= '' then
-      return startup_root
-    end
-
     local cwd_root = vim.fn.FugitiveWorkTree()
     if cwd_root ~= '' then
       return cwd_root
     end
   end
 
-  return startup_cwd
+  return vim.fn.getcwd()
 end
 
 if is_installed('vim-fugitive') then
